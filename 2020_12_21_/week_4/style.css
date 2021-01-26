@@ -1,0 +1,28 @@
+.container {
+    width: 800px;
+    margin: auto;
+    background-color: beige;
+    padding: 30px;
+
+}
+
+.task_item {
+    margin: 20px;
+}
+.result {
+    width: 60%;
+    margin: auto;
+    padding: 10px;
+    border: 1px solid olivedrab;
+    text-align: center;
+    background-color: azure;
+}
+.newsBlock {
+    background-color: azure;
+    padding: 20px;
+}
+
+.newsItem {
+    border: 2px solid green;
+    border-radius: 5px;
+}

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="container" id="container">
+        <div class="block">
+            <div class="generator" id="generator">12</div>
+            <button class="gen-b" type="button" id="genB">Generate</button>
+        </div>
+        <div class="info" id="info">
+            <p class="info1" id="info1"></p>
+            <p id="info2"></p>
+        </div>
+    </div>
+    <div class="task3">
+        <button type="button">Hide / Show</button>
+        <div id="tsk3text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique fugit maxime porro quam corporis asperiores, sit nemo laudantium eligendi at? Vitae officia cumque fugiat officiis recusandae, labore dolores voluptatibus possimus?</div>
+    </div>
+
+    <script>
+        genB.addEventListener('click',
+            (e) => {
+                generator.innerText = Math.floor(Math.random() * 100);
+            })
+        container.addEventListener('click',
+            (e) => {
+                doIt(1);
+            })
+        container.addEventListener('contextmenu',
+            (e) => {
+                doIt(2);
+            })
+        container.addEventListener('mousedown',
+            (e) => {
+                doIt(3);
+            })
+
+        function doIt(n) {
+            switch (n) {
+                case 1:
+                    info2.innerText = 'Left';
+                    break;
+                case 2:
+                    info2.innerText = 'Right';
+                    break;
+                case 3:
+                    info2.innerText = 'Wheel';
+                    break;
+            }
+        }
+        container.addEventListener('mousemove',
+            (e) => {
+                console.log(e.clientX);
+
+                info.style.left = e.clientX + 'px';
+                info.style.top = e.clientY + 'px';
+                info1.innerText = "X = " + e.clientX + ", Y = " + e.clientY;
+            })
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,70 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>Registration form</title>
+    <style>
+        #regForm b {
+            display: inline-block;
+            padding-top: 5px;
+            width: 100px;
+        }
+        
+        #regForm input[type="submit"] {
+            margin: 15px 150px;
+        }
+    </style>
+</head>
+
+<body>
+    <form method="GET" id="regForm" onsubmit="return checkForm()">
+        <b>First name:</b> <input type="text" id="name1" name="name1" /><br/>
+        <b>Second name:</b> <input type="text" id="name2" name="name2" /><br/>
+        <b>Login:</b> <input type="text" id="login" name="login" /><br/>
+        <b>Password:</b> <input type="password" id="pas1" name="pass" /><br/>
+        <b>Retype:</b> <input type="password" id="pas2" /><br/>
+        <b>Email:</b> <input type="email" id="email" name="email" /><br/>
+        <b>Cellular:</b> <input type="phone" id="phone" name="phone" /><br/>
+        <b>Code:</b> <input type="number" id="code" name="code" /><br/>
+        <b></b><label><input type="checkbox" name="accept"  /> I accept the rules</label><br/>
+        <input type="submit" value="Register" />
+    </form>
+
+    <script>
+        function checkForm() {
+            console.log(name1.value)
+            let regFN = /^[A-Z][a-z]+/
+            if (!regFN.test(name1.value)) {
+                alert("wrong first name");
+                //return false;
+            }
+            if (!regFN.test(name2.value)) {
+                console.log(name2.value)
+                alert("wrong second name");
+                //return false;
+            }
+            let regP = /[\w]{8,}/
+            if (!regP.test(pas1.value)) {
+                alert("wrong password");
+                //return false;
+            }
+            if (pas1.value !== pas2.value) {
+                alert("passwords are not equals");
+                //return false;
+            }
+            let regEm = /[a-zA-Z_0-9]+@{1}[a-zA-Z_0-9\.]{5,}/
+            if (!regEm.test(email.value)) {
+                alert("wrong email");
+                //return false;
+            }
+
+
+
+            alert("GOOD!!!");
+            // return true;
+        }
+    </script>
+</body>
+
+</html>

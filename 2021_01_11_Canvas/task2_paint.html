@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            background-color: azure;
+        }
+        * {
+            box-sizing: border-box;
+            margin: 0px;
+            padding: 0px;
+        }
+        .container {
+            position: relative;
+            width: 800px;
+            margin: auto;
+            background-color: bisque;
+            padding: 20px;
+        }
+        hr {
+            margin: 20px 0px;
+        }
+        .after {
+            margin-top: 440px;
+        }
+        h3 {
+            text-align: center;
+        }
+        .choosing {
+            display: flex;
+            justify-content: space-around;
+        }
+        label {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        label input {
+            margin-right: 10px;
+        }
+        .square {
+            background-color: gray;
+            width: 40px;
+            height: 40px;
+        }
+        .circle {
+            background-color: gray;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+        }
+        .rhombus {
+            background-color: gray;
+            width: 30px;
+            height: 30px;
+            transform: rotate(45deg);
+        }
+        .triangle {
+            border: 20px solid transparent;
+            border-left: 20px solid gray;
+            border-bottom: 20px solid gray;
+        }
+        .colors {
+            display: flex;
+            flex-wrap: wrap;
+            width: 154px;
+        }
+        .color {
+            width: 22px;
+            height: 22px;
+        }
+        .clearButton {
+            width: 100%;
+            font-size: large;
+            color: red;
+        }
+        .moving {
+            position: absolute;
+            border: 1px solid gray;
+        }
+        .canvas {
+            position: absolute;
+            border: 1px solid gray;
+        }
+    </style>
+</head>
+<body>
+    <div class="container" id="container">
+        <h3>PAINT</h3>
+        <hr>
+        <div class="choosing">
+            <label for=""><input type="radio" name="figureRadio" value="1" checked><div class="square"></div></label>
+            <label for=""><input type="radio" name="figureRadio" value="2"><div class="circle"></div></label>
+            <label for=""><input type="radio" name="figureRadio" value="3"><div class="rhombus"></div></label>
+            <label for=""><input type="radio" name="figureRadio" value="4"><div class="triangle"></div></label>
+            <div class="colors">
+                <div class="color" style="background-color: #FFFFFF;"></div>
+                <div class="color" style="background-color: #D7D7D7;"></div>
+                <div class="color" style="background-color: #FFFF00;"></div>
+                <div class="color" style="background-color: #B5DCE9;"></div>
+                <div class="color" style="background-color: #FFC6D0;"></div>
+                <div class="color" style="background-color: #99F099;"></div>
+                <div class="color" style="background-color: #F08CF0;"></div>
+                <div class="color" style="background-color: #000000;"></div>
+                <div class="color" style="background-color: #8A8A8A;"></div>
+                <div class="color" style="background-color: #FFAD00;"></div>
+                <div class="color" style="background-color: #0000FF;"></div>
+                <div class="color" style="background-color: #FF0000;"></div>
+                <div class="color" style="background-color: #008A00;"></div>
+                <div class="color" style="background-color: #9D00D7;"></div>
+            </div>
+        </div>
+        <hr>
+        <canvas class="canvas" id="canvasFloor" width="750px" height="400px"></canvas>
+        <canvas class="canvas" id="canvas" width="750px" height="400px"></canvas>
+        <hr class="after">
+        <button type="button" class="clearButton" id="clearButton">Clear</button>
+
+        <script>
+            let myColor = 'gray';
+            let isDrawing = false;
+            let startX = 0;
+            let startY = 0;
+            let newX = 0;
+            let newY = 0;
+            let canvas = document.getElementById('canvas');
+            let figure = canvas.getContext('2d');
+            let figureFloor = canvasFloor.getContext('2d');
+
+            document.addEventListener('click', (e)=>{
+                if(e.target.className === 'color')
+                {
+                    let tmp = Array.from(document.getElementsByClassName('color'));
+                    tmp.forEach(element => {
+                        element.style.border = 'none';
+                    });
+                    e.target.style.border = '5px solid #FF00FF';
+                    myColor = e.target.style.backgroundColor;
+                }
+                if(e.target.className === 'clearButton')
+                {
+                    figure.clearRect(0, 0, canvas.width, canvas.height);
+                    figureFloor.clearRect(0, 0, canvas.width, canvas.height);
+                }
+            })
+            canvas.addEventListener('mousedown', (e)=>{
+                isDrawing = true;
+                let r = document.querySelector('input[name="colorRadio"]:checked');
+                startX = e.clientX - container.offsetLeft - canvas.offsetLeft;
+                startY = e.clientY - canvas.offsetTop;
+            })
+            canvas.addEventListener('mouseup', (e)=>{
+                isDrawing = false;
+                newX = e.clientX - container.offsetLeft - canvas.offsetLeft;
+                newY = e.clientY - canvas.offsetTop;
+                if (Math.abs(newX - startX) < 1 || Math.abs(newY - startY) < 1)
+                {
+                    drawFigure(startX + 50, startY + 50, figureFloor);
+                }
+                else 
+                {
+                    drawFigure(newX, newY, figureFloor);
+                }
+                figure.clearRect(0, 0, canvas.width, canvas.height);
+            })
+            canvas.addEventListener('mousemove', (e)=>{
+                if(isDrawing)
+                {
+                    figure.clearRect(0, 0, canvas.width, canvas.height);
+                    newX = e.clientX - container.offsetLeft - canvas.offsetLeft;
+                    newY = e.clientY - canvas.offsetTop;
+                    drawFigure(newX, newY, figure);
+                }
+            })
+            function drawFigure(newX, newY, canvFigure)
+            {
+                let k = document.querySelector('input[name="figureRadio"]:checked').value;
+                if (k === '1')
+                {
+                    canvFigure.beginPath();
+                    canvFigure.moveTo(startX, startY);
+                    canvFigure.lineTo(newX, startY);
+                    canvFigure.lineTo(newX, newY);
+                    canvFigure.lineTo(startX, newY);
+                    canvFigure.lineTo(startX, startY);
+                    canvFigure.closePath();
+                    canvFigure.fillStyle = myColor;
+                    canvFigure.fill();
+                }
+                else if(k==='2')
+                {
+                    canvFigure.beginPath();
+                    canvFigure.fillStyle = myColor;
+                    let radius = 0;
+                    if (Math.abs(newX - startX) < Math.abs(newY - startY)) radius = Math.abs(newX - startX) / 2;
+                    else radius = Math.abs(newY - startY) / 2;
+                    radX = radY = radius;
+                    if(newX < startX) radX = -radX;
+                    if(newY < startY) radY = -radY;
+                    
+                    canvFigure.arc(startX + radX, startY + radY, radius, 0, 2 * Math.PI );
+                    canvFigure.fill();
+                }
+                else if(k === '3')
+                {
+                    canvFigure.beginPath();
+                    canvFigure.moveTo((startX + newX) / 2, startY);
+                    canvFigure.lineTo(newX, (startY + newY) / 2);
+                    canvFigure.lineTo((startX + newX) / 2, newY);
+                    canvFigure.lineTo(startX, (startY + newY) / 2);
+                    canvFigure.lineTo((startX + newX) / 2, startY);
+                    canvFigure.closePath();
+                    canvFigure.fillStyle = myColor;
+                    canvFigure.fill();
+                }
+                else if(k === '4')
+                {
+                    canvFigure.beginPath();
+                    canvFigure.moveTo(startX, startY);
+                    canvFigure.lineTo(newX, newY);
+                    canvFigure.lineTo(startX, newY);
+                    canvFigure.lineTo(startX, startY);
+                    canvFigure.closePath();
+                    canvFigure.fillStyle = myColor;
+                    canvFigure.fill();
+                }
+            }
+        </script>
+    </div>
+</body>
+</html>

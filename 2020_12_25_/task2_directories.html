@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0px;
+        }
+        .description {
+            width: 400px;
+            margin: auto;
+        }
+        .diskRoot {
+            padding: 30px 0px;
+            width: 400px;
+            margin: auto;
+            background-color: bisque;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        span:hover {
+            font-weight: bolder;
+        }
+        .second {
+            list-style-type: circle;
+        }
+        .third {
+            list-style-type: square;
+        }
+    </style>
+</head>
+<body>
+    <div class="description">
+        <h2>Задание 2</h2>
+        <p>Создать html-страницу с деревом вложенных директорий. <br>
+            При клике на элемент списка, он должен сворачиваться или
+            разворачиваться. <br> При наведении на элемент, шрифт должен ста-
+            новится жирным (с помощью CSS).</p>
+    </div>
+    <div class="diskRoot">
+        <li class="hide"><span>This PC</span>
+            <ul class="second">
+                <li class="hide"><span>Disk (C:)</span>
+                    <ul class="third">
+                        <li><span>Program Files</span></li>
+                        <li><span>Users</span></li>
+                        <li><span>Windows</span></li>
+                    </ul>
+                </li>
+                <li class="hide"><span>Local Disk (D:)</span>
+                    <ul class="third">
+                        <li><span>New Folder 1</span></li>
+                        <li><span>New Folder 2</span></li>
+                        <li><span>New Folder 3</span></li>
+                    </ul>
+                </li>
+                <li class="hide"><span>Local Disk (E:)</span>
+                    <ul class="third">
+                        <li><span>New Folder 10</span></li>
+                        <li><span>New Folder 11</span></li>
+                        <li><span>New Folder 12</span></li>
+                    </ul>
+                </li>
+            </ul>
+        </li>
+        
+    </div>
+    <script>
+        let list = document.querySelectorAll('ul');
+        for (let item of list)
+        {
+            item.hidden = true;
+        }
+
+        document.addEventListener('click', (e)=>{
+            let elem = e.target.parentNode;
+            if (elem.className.indexOf('hide') > -1)
+            {
+                elem.children[1].hidden = !elem.children[1].hidden;
+            }
+        })
+    </script>
+
+</body>
+</html>

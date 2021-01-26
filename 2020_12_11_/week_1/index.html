@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <script src="index.js"></script>
+    <title>Zyrianov_2020_12_11_dz1</title>
+</head>
+<body>
+    <div class="container">
+        <div class="discription">
+            <h2>Задача 1 - Автомобили</h2>
+            <p>Создать объект, описывающий автомобиль (производитель,
+            модель, год выпуска, средняя скорость), и следующие функции
+            для работы с этим объектом.
+            <br> 1. Функция для вывода на экран информации об автомобиле.
+            <br> 2. Функция для подсчета необходимого времени для преодоления 
+            переданного расстояния со средней скоростью.
+            <br> Учтите, что через каждые 4 часа дороги водителю необходимо делать перерыв на 1 час.</p>
+        </div>
+
+        <div class="task">
+            <div class="task__item">
+                <h4>Введите данные автомобиля:</h4>
+                <form class="task__item--input" action="">
+                    <p>Производитель: <input type="text" name="brand" id="brand"></p>
+                    <p>Модель: <input type="text" name="model" id="model"></p>
+                    <p>Год выпуска: <input type="text" name="year" id="year"></p>
+                    <p>Средняя скорость: <input type="text" name="speed" id="speed"></p>
+                    <p>Дистанция: <input type="text" name="distance" id="distance"></p>
+                    <button onclick="task1()" type="button">Подсчитать необходимое время</button>
+                </form>
+            </div>
+            <div class="task__item">
+                <h4>Результат:</h4>
+                <div class="task__item--result">
+                    <textarea name="res1" id="res1" cols="40" rows="12"></textarea>
+                </div>
+            </div>
+        </div>
+
+<!-- Task 2 -->
+        <div class="discription">
+            <h2>Задача 2 - Дроби</h2>
+            <p>Создать объект, хранящий в себе отдельно числитель и зна-
+                менатель дроби, и следующие функции для работы с этим объ-
+                ектом. 
+                <br>1. Функция сложения 2-х объектов-дробей.
+                <br>2. Функция вычитания 2-х объектов-дробей.
+                <br>3. Функция умножения 2-х объектов-дробей.
+                <br>4. Функция деления 2-х объектов-дробей.
+                <br>5. Функция сокращения объекта-дроби.</p>
+        </div>
+        <div class="task">
+            <div class="task__item">
+                <h4>Введите дроби:</h4>
+                <form class="task__item--input" action="">
+                    <h5>Дробь 1</h5>
+                    <p>Числитель: <input type="number" name="numer1" id="numer1"></p>
+                    <p>Знаменатель: <input type="number" name="denom1" id="denom1"></p>
+
+                    <h5>Дробь 2</h5>
+                    <p>Числитель: <input type="number" name="numer2" id="numer2"></p>
+                    <p>Знаменатель: <input type="number" name="denom2" id="denom2"></p>
+                    <button onclick="task2('1')" type="button">Сложить дроби</button>
+                    <button onclick="task2('2')" type="button">Вычесть дробь</button>
+                    <button onclick="task2('3')" type="button">Умножить дроби</button>
+                    <button onclick="task2('4')" type="button">Разделить дроби</button>
+                </form>
+            </div>
+            <div class="task__item">
+                <h4>Результат:</h4>
+                <div class="task__item--result">
+                    <textarea name="res2" id="res2" cols="40" rows="10"></textarea>
+                </div>
+                
+            </div>
+        </div>
+
+<!-- Task 3 -->
+        <div class="discription">
+            <h2>Задача 3 - Время</h2>
+            <p>Создать объект, описывающий время (часы, минуты, секун-
+                ды), и следующие функции для работы с этим объектом.
+                <br>1. Функция вывода времени на экран. 
+                <br>2. Функция изменения времени на переданное количество
+                секунд.
+                <br>3. Функция изменения времени на переданное количество
+                минут.
+                <br>4. Функция изменения времени на переданное количество
+                часов.
+                <br>Учтите, что в последних 3-х функциях, при изменении одной
+                части времени, может измениться и другая. Например: если ко
+                времени «20:30:45» добавить 30 секунд, то должно получиться
+                «20:31:15», а не «20:30:75».</p>
+        </div>
+        <div class="task">
+            <div class="task__item">
+                <h4>Время:</h4>
+                <form class="task__item--input" action="">
+                    <h5>Введите исходное время:</h5>
+                    <p>Часы: <input type="number" min="0" max="23" name="hour3" id="hour3" required></p>
+                    <p>Минуты: <input type="number" min="0" max="59" name="minute3" id="minute3" required></p>
+                    <p>Секунды: <input type="number" min="0" max="59" name="second3" id="second3" required></p>
+                    <button onclick="task3('1')" type="button">Принять введенное время</button>
+                    <hr>
+                    <p>Изменить время на: <input type="number" min="0" max="59" name="second3_2" id="second3_2"> секунд</p>
+                    <button onclick="task3('2')" type="button">Получить результат</button>
+                    <hr>
+                    <p>Изменить время на: <input type="number" min="0" max="59" name="minute3_3" id="minute3_3"> минут</p>
+                    <button onclick="task3('3')" type="button">Получить результат</button>
+                    <hr>
+                    <p>Изменить время на: <input type="number" min="0" max="59" name="hour3_4" id="hour3_4"> часов</p>
+                    <button onclick="task3('4')" type="button">Получить результат</button>
+                    <hr>
+                </form>
+            </div>
+            <div class="task__item">
+                <h4>Исходное время:</h4>
+                <div class="task__item--result">
+                    <span class="time-res3" id="time-start">00:00:00</span>
+                </div>
+                <h4>Результат:</h4>
+                <div class="task__item--result">
+                    <span class="time-res3" id="time-res">00:00:00</span>
+                </div>
+                <h4>Доп. инфо:</h4>
+                <div>
+                    <span class="serrors3" id="serrors">Пока что полет ОК</span>
+                </div>
+                <hr>
+                <h4>Заменить исходное время на результат</h4>
+                <button onclick="task3('5')" type="button">Заменить</button>
+            </div>
+        </div>
+    </div>
+    
+</body>
+</html>

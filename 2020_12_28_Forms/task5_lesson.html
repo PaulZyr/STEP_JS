@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            background-color: azure;
+        }
+        * {
+            box-sizing: border-box;
+            margin: 0px;
+            padding: 0px;
+        }
+        .description {
+            width: 600px;
+            margin: auto;
+        }
+        .container {
+            width: 650px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: bisque;
+        }
+        .selecting {
+            margin: auto;
+            display: flex;
+            justify-content: center;
+        }
+        .sel__item {
+            margin: 0px 10px;
+        }
+        button {
+            background-color: lightgray;
+            height: 25px;
+            font-size: 16px;
+            border-radius: 5px;
+        }
+        .selecting button {
+            width: 60px;
+        }
+        .lastButton {
+            width: 100%;
+            /* margin-top: 10px; */
+        }
+        .hr0 {
+            margin: 20px 0px;
+        }
+        .topic__info {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 10px 0px;
+        }
+        #topicInfo {
+            width: 70%;
+            border: 1px solid gray;
+            border-radius: 5px;
+            margin-left: 10px;
+            padding-left: 10px;
+            background-color: white;
+            height: 30px;
+            display: flex;
+            align-items: center;
+        }
+        .tbl__item {
+            display: flex;
+            position: relative;
+            padding: 5px 20px;
+        }
+        .studPresent, #studPresent, .studCheck {
+            position: absolute;
+            left: 50%;
+        }
+        .hrTbl {
+            border-top: 1px dotted gray;
+            margin: 5px 0px;
+        }
+    </style>
+</head>
+<body>
+    <div class="description">
+        <h2>Задание 5</h2>
+        <p>Создать html-страницу с возможностью отмечать присутству-
+            ющих на паре. <br> Для начала пользователь выбирает группу и пару,
+            дальше вводит тему занятия и отмечает присутствующих.<br>Также
+            добавить возможность посмотреть уже отмеченные пары. Хранить
+            информацию в заранее подготовленных массивах.</p>
+    </div>
+    <div class="container">
+        <div >
+            <form class="selecting" action="">
+                <div class="sel__item">
+                    <span>Group:</span>
+                    <select name="" id="selGroup">
+                        <option id="group0" value="g0">-----</option>
+                    </select>
+                </div>
+                <div class="sel__item">
+                    <span>Lesson:</span>
+                    <select name="" id="selLesson">
+                        <option id="lesson0" value="x0">------</option>
+                    </select>
+                </div>
+                <div class="sel__item"><button type="button" id="selectButton">Select</button></div>
+            </form>
+        </div>
+        <hr class="hr0">
+        <div id="result" hidden>
+            <div>
+                <div class="topic__info">
+                    <span>Topic: </span><span id="topicInfo">some topic</span>
+                </div>
+            </div>
+            <div>
+                <div class="tbl__item">
+                    <div id="studName">Name</div>
+                    <div id="studPresent">Is present</div>
+                </div>
+                <hr class="hrTbl">
+                <div id="tbl"></div>
+            </div>
+            <div>
+                <button type="button" class="lastButton" id="saveButton">Save</button>
+                <button type="button" class="lastButton" id="changeButton" hidden>Change</button>
+            </div>
+        </div>
+
+    </div>
+    
+    <script>
+        let groups = [];
+        let topics = [];
+        let students = [];
+
+        initApp();
+
+        document.addEventListener('click', (e)=>{
+            if(e.target.id === 'selectButton')
+            {
+                e.preventDefault();
+                result.hidden = false;
+                if(selGroup.value === 'g0')
+                {
+                    alert('Choose the Group!');
+                }
+                else if(selLesson.value === 'x0')
+                {
+                    alert('Choose the Lesson!');
+                }
+                else
+                {
+                    createStructure();
+                }
+            }
+            else if(e.target.id === 'saveButton')
+            {
+                saveChecked();
+            }
+            else if(e.target.id === 'changeButton')
+            {
+                changeChecked();
+            }
+        })
+
+        function saveChecked()
+        {
+            let group = document.querySelectorAll('input');
+            for (let student of group)
+            {
+                if (student.checked === true)
+                {
+                    console.log('checked + ');
+                    let tmpId = `studName${student.id.slice(9)}`;
+                    for (let item of students)
+                    {
+                        if (item.name === document.getElementById(tmpId).innerText)
+                        {
+                            if(item.studTopic.indexOf(topicInfo.innerText) === -1)
+                            {
+                                item.studTopic += `%${topicInfo.innerText}`;
+                            }
+                        }
+                    }
+                }
+                else
+                {
+                    console.log('NO - ');
+                    let tmpId = `studName${student.id.slice(9)}`;
+                    for (let item of students)
+                    {
+                        if (item.name === document.getElementById(tmpId).innerText)
+                        {
+                            if(item.studTopic.indexOf(topicInfo.innerText) > -1)
+                            {
+                                item.studTopic = item.studTopic.replace(`%${topicInfo.innerText}`, '');
+                            }
+                        }
+                    }
+                }
+            }
+            createStructure();
+            for (let item of document.querySelectorAll('.studPresent'))
+            {
+                item.hidden = false;
+            }
+            for (let item of document.querySelectorAll('.studCheck'))
+            {
+                item.hidden = true;
+            }
+            changeButton.hidden = false;
+            saveButton.hidden = true;
+        }
+
+        function changeChecked()
+        {
+            changeButton.hidden = true;
+            saveButton.hidden = false;
+            createStructure();
+        }
+
+        function createStructure()
+        {
+            tbl.innerHTML = '';
+            let k = 0;
+            topicInfo.innerText = selLesson.value;
+            for (let student of students)
+            {
+                if (student.group === selGroup.value)
+                {
+                    let div = document.createElement('div');
+                    div.className = 'tbl__item';
+                    let name = `studName${k}`;
+                    let studPresent = `studPresent${k}`;
+                    let studCheck = `studCheck${k}`;
+                    div.innerHTML = `<div id='${name}'>${student.name}</div>
+                        <div class='studPresent' id='${studPresent}' hidden></div>
+                        <div class='studCheck'><input type="checkbox" id='${studCheck}'></div>`;
+                    tbl.append(div);
+                    let hr = document.createElement('hr');
+                    hr.className = 'hrTbl';
+                    tbl.append(hr);
+                    k++;
+                    if(student.studTopic.indexOf(selLesson.value) > -1)
+                    {
+                        document.getElementById(studCheck).checked = true;
+                        document.getElementById(studPresent).innerText = 'present';
+                    }
+                }
+            }
+        }
+
+        function Student(name, group)
+        {
+            let str = '';
+            return {
+                'name': name,
+                'group': group,
+                'studTopic': str
+            }
+        }
+        
+        function initApp()
+        {
+            topics.push('C/C++');
+            topics.push('CSharp');
+            topics.push('HTML/CSS');
+            topics.push('JavaScript');
+            topics.push('PHP');
+
+            groups.push('W08');
+            groups.push('PR12');
+            groups.push('TK11');
+
+            for (let i = 1; i <= 18; ++i)
+            {
+                let name = `student_${i}`;
+                students.push(new Student(name, groups[i%3]));
+            }
+
+            for (let item of groups)
+            {
+                let opt = document.createElement('option');
+                opt.value = item;
+                opt.innerHTML = item;
+                selGroup.append(opt);
+            }
+            
+            for (let i=0; i < topics.length; ++i)
+            {
+                let opt = document.createElement('option');
+                opt.value = topics[i];
+                opt.innerHTML = `${i+1}`;
+                selLesson.append(opt);
+            }
+        }
+    </script>
+</body>
+</html>

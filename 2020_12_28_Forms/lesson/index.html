@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        p {
+            margin: 10px;
+        }
+        
+        .item__block {
+            width: 400px;
+            margin: auto;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .item {
+            display: flex;
+        }
+        
+        .item label {
+            margin: 0px 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <form class="item__block" action="">
+        <div class="item">
+            <p>
+                <label>
+            Your email: <br />
+            <input type="email" placeholder="petro@gde.nas.net" />
+          </label>
+            </p>
+            <p>
+                <label>
+              Your login<br />
+              <input type="text" placeholder="petrik2020" />
+            </label>
+            </p>
+
+        </div>
+        <div class="item">
+            <p>
+                <label>
+            Your Password <br />
+            <input type="password" placeholder="777" />
+          </label>
+            </p>
+            <p>
+                <label>
+             Repeat Password <br />
+              <input type="password" placeholder="777" />
+            </label>
+            </p>
+        </div>
+
+        <button>Sign up</button>
+    </form>
+    <hr />
+    <p id="out">Result will be here</p>
+
+    <script>
+        "use strict";
+        let myForm = document.forms[0];
+        let inpText = document.querySelector("input[type='text']");
+        let inpEmail = document.querySelector("input[type='email']")
+        let inpPass = document.querySelectorAll("input[type='password']");
+
+        let out = document.querySelector("#out");
+
+        function chekForm() {
+            if (inpText.value === "") {
+                out.textContent = "login empty";
+                return
+            }
+            if (inpEmail.value === "") {
+                out.textContent = "email empty";
+                return
+            }
+            if (inpPass[0].value === '' || inpPass[1].value === '') {
+                out.textContent = "password empty";
+                return
+            }
+
+            if (inpPass[0].value !== inpPass[1].value) {
+                out.textContent = "Password not equals";
+                return
+            }
+
+            out.textContent = `На почту ${inpEmail.value} отправлено письмо с подтверждением`;
+
+            myForm.reset()
+        }
+
+        myForm.addEventListener("submit", (e) => {
+            e.preventDefault();
+            chekForm();
+        });
+    </script>
+
+
+
+</body>
+
+</html>

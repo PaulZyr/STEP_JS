@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GitHub User Info</title>
+    <link rel="stylesheet" href="github.css">
+    <script defer src="github.js"></script>
+</head>
+<body>
+    <div class="container">
+        <div class="search__block">
+            <span><b>Search login:</b></span>
+            <input type="text" id="searchInput">
+            <span style="font-size: 12px;">(input & press Enter)</span>
+        </div>
+        <hr>
+        <div class="info__block">
+            <div class="info-part left">
+                <div class="info-item">
+                    <img src="" alt=""  id="pic">
+                </div>
+                <div class="info-item">
+                    <span><b>Name:</b></span><span id="userName"></span>
+                </div>
+                <hr>
+                <div class="info-item">
+                    <span><b>Login:</b></span><span id="login"></span>
+                </div>
+                <hr>
+            </div>
+            <div class="info-part">
+                <div class="info-item">
+                    <span><b>Url to github:</b></span><span id="userUrl"></span>
+                </div>
+                <hr>
+                <div class="info-item">
+                    <span><b>Blog:</b></span><span id="blog"></span>
+                </div>
+                <hr>
+                <div class="info-item">
+                    <span><b>City:</b></span><span id="city"></span>
+                </div>
+                <hr>
+                <div class="info-item">
+                    <span><b>Email:</b></span><span id="email"></span>
+                </div>
+                <hr>
+                <div class="info-item">
+                    <div><span><b>Followers:</b></span><span id="followers" style="padding-left: 10px;"></span></div>
+                    <div><span><b>Following:</b></span><span id="following" style="padding-left: 10px;"></span></div>
+                </div>
+                <hr>
+            </div>
+        </div>
+        <div class="error" id="errInfo">
+            <h2>4 0 4</h2>
+            <h3>No user with such login.</h3>
+            <h4>Please, input a different login.</h4>
+        </div>
+    </div>
+</body>
+</html>

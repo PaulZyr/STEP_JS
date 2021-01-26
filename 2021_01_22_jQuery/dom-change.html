@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>DOM changing</title>
+  <style type="text/css">
+    #code {
+      background-color:#fffDBD;
+      margin:10px;
+      padding:5px;
+    }
+    #par1 { visibility:hidden;}
+    #style1{
+      color:blue;
+      font-family:"Times New Roman";
+    }
+    #style2{
+      font-weight:bold;
+      font-family:Verdana;
+    }
+    #style3{
+      color:red;
+      font-size:20px;
+    }
+    #style4{
+      color:green;
+      font-family:Arial;
+      font-size:25px;
+    }
+  </style>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+</head>
+<body>
+  <h1>DOM changing</h1>
+
+  <h2>1. После нажатия на кнопку с <kbd>id=but1</kbd> содержимое невидимого абзаца с <kbd>id=par1</kbd> должно быть считано и вставлено в абзац с <kbd>id=par2</kbd>.</h2>
+  <div id="code">
+    <p id="par1">Клад закопан в погребе дома №34 на улице Биттер Стрит в Лондоне.</p>
+    <p id="par2">Вставьте в меня содержимое первого абзаца.</p>
+    <input id="but1" type="button" value="Скопировать содержимое абзаца par1 в par2" />
+    <script>
+      'use strict'
+
+      $("#but1").on('click', function(){
+        $('#par1').css('visibility', 'visible')
+        $("#par2").html($("#par1").html()).append( " <strong>Да да. Это правда!</strong>" )
+      })
+    </script>
+  </div>
+
+  <h2>2. После нажатия на кнопку с <kbd>id=but2</kbd> в абзацы <kbd>par3, par4, par5 и par6</kbd> должны добавляться недостающие слова. Слова при вставке должны быть выделены жирным шрифтом.</h2>
+  <div id="code">
+    <p id="par3"> Для разметки веб-страниц используется - </p>
+    <p id="par4"> - используется для оформления HTML страниц.</p>
+    <p id="par5"> - предназначен для написания клиентских скриптов выполняющихся браузером.</p>
+    <p id="par6"> - JavaScript библиотека значительно упрощающая написание кода.</p>
+    <input id="but2" type="button" value="Добавить в абзацы выше недостающие слова" />
+    <script>
+      'use strict'
+
+      $("#but2").on('click', function(){
+        $("#par3").append('<b></b>').end().html($("#par3 b").append('HTML'))
+        $("#par4").prepend("<b>CSS</b>")
+        $("#par5").prepend("<b>JavaScript</b>")
+        $("#par6").prepend("<b>jQuery</b>")
+      })
+    </script>
+  </div>
+
+  <h2>3. После нажатия на кнопку с <kbd>id=but3</kbd> элементы с <kbd>id=href1, id=par7 и type=text</kbd> должны стать оформленными соответственно своему содержимому.</h2>
+  <div id="code">
+    <a id="href1" href="https://jquery.com/">Передо мной отображено значение моего атрибута href.</a>
+    <p id="par7" class="afterbutton"> После кнопки с id=but3 расположено значение моего атрибута <kbd>class</kbd> выделенное жирным шрифтом.</p>
+    <input type="text" value="После данного элемента расположено слово 'key'" style="width:320px" />
+    <br /><br />
+    <input id="but3" type="button" value="Оформить элементы" />
+    <script>
+      'use strict'
+
+      $("#but3").on('click', function(){
+        $("#href1").prepend($("#href1").attr("href"))
+        // $("#but3").after($("#par7").attr("class"))
+        $("#but3").after('<b></b>').end().html($('#but3 + b').text($("#par7").attr("class")))
+        $(":text").after("key")
+      })
+    </script>
+  </div>
+
+  <h2>4. После нажатия на кнопку с <kbd>id=but4</kbd> элементы должны стать оформленными соответственно своему содержимому.
+      (Необходимые стили уже заданы нужно только обернуть абзацы в тэги с соответствующими id: <kbd>style1, style2, style3, style4</kbd>.) </h2>
+  <div id="code">
+    <p id="par8">Текст этого элемента отображен жирным шрифтом Verdana.</p>
+    <p id="par9">Текст этого элемента отображен шрифтом красного цвета размером 20 пикселей.</p>
+    <p id="par10">Текст этого элемента отображен синим шрифтом Times New Roman.</p>
+    <p id="par11">Текст этого элемента отображен зеленым шрифтом Arial размером 25 пикселей.</p>
+    <input id="but4" type="button" value="Применить оформление к абзацам" />
+    <script>
+    'use strict'
+
+    $("#but4").on('click', function(){
+      $("#par8").wrap("<div id='style2'></div>")
+      $("#par9").wrap("<div id='style3'></div>")
+      $("#par10").wrap("<div id='style1'></div>")
+      $("#par11").wrap("<div id='style4'></div>")
+    })
+    </script>
+
+  </div>
+
+</body>
+</html>

@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="jquery-3.5.1.min.js"></script>
+    <script src="blocks.js"></script>
+    <title>Blocks</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0px;
+        }
+        .blocks {
+            width: 100vw;
+            height: 100vh;
+            position: fixed;
+            display: flex;
+        }
+        .block {
+            height: 100%;
+        }
+        .left {
+            width: 30%;
+        }
+        .right {
+            width: 100%;
+        }
+        .minimus {
+            width: 70%;
+        }
+        .left-top {
+            min-height: 100px;
+            height: 500px;
+            background-color: antiquewhite;
+        }
+        .left-bottom {
+            min-height: 100px;
+            height: 60%;
+            background-color: aqua;
+        }
+        .middle {
+            height: 20px;
+            background-color: rgb(206, 206, 206);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .sign {
+            width: 25px;
+            height: 12px;
+            border-bottom: 4px solid black;
+            border-top: 4px solid black;
+        }
+        .panel {
+            height: 100%;
+            width: 20px;
+            background-color: rgb(206, 206, 206);
+            position: relative;
+        }
+        .right-top {
+            min-height: 100px;
+            height: 70%;
+            background-color: darkgreen;
+        }
+        .right-bottom {
+            min-height: 100px;
+            height: 30%;
+            background-color: coral;
+        }
+        .arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 16px;
+            height: 20px;
+        }
+        .arrowR {
+            border: 16px solid transparent;
+            border-left: 16px solid black;
+            left: 2px;
+            display: none;
+        }
+        .arrowL {
+            border: 16px solid transparent;
+            border-right: 16px solid black;
+            right: 2px;
+        }
+        .hider {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="blocks">
+        <div class="block left">
+            <div class="left-top" id="leftTop"></div>
+            <div class="middle" id="leftMiddle"><div class="sign"></div></div>
+            <div class="left-bottom" id="leftBottom"></div>
+        </div>
+        <div class="panel" id="panel">
+            <div class="arrow arrowR"></div>
+            <div class="arrow arrowL"></div>
+        </div>
+        <div class="block right minimus">
+            <div class="right-top" id="rightTop"></div>
+            <div class="middle" id="rightMiddle"><div class="sign"></div></div>
+            <div class="right-bottom" id="rightBottom"></div>
+        </div>
+    </div>
+</body>
+</html>

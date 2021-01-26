@@ -1,0 +1,184 @@
+body {
+    box-sizing: border-box;
+}
+* {
+    margin: 0px;
+}
+p, h5, h4, h2 {
+    margin: 5px 0px;
+}
+h2 {
+    text-align: center;
+}
+button {
+    margin: 10px 0px;
+}
+.container {
+    width: 800px;
+    margin: auto;
+    padding: 30px;
+}
+.discription {
+    margin-bottom: 20px;
+    padding: 20px;
+    background-color: antiquewhite;
+}
+.task {
+    display: flex;
+    justify-content: space-between;
+    background-color: azure;
+    margin-bottom: 20px;
+}
+.task__item1 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 35%;
+    margin: 20px;
+}
+.task__item2 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 60%;
+    margin: 20px;
+}
+.task__item-input {
+    display: flex;
+    flex-direction: column;
+    align-items:flex-end;
+}
+hr {
+    width: 50%;
+    border: 1px solid gray;
+}
+.list__done, .list__undone {
+    margin: 10px 0px;
+}
+
+
+
+.list__item {
+    display: flex;
+    align-items: center;
+}
+.idiv {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 24px;
+    width: 32px;
+}
+.list__item-name {
+    width: 200px;
+}
+.list__item-quantity {
+    width: 60px;
+}
+
+.print-undone {
+    display: flex;
+    flex-direction: column;
+}
+.print-done {
+    display: flex;
+    flex-direction: column;
+}
+
+/* ----- Task 2 ----- */
+
+.task2__item1 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 35%;
+}
+.task2__item-input {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+.task2__item2 hr {
+    width: 95%;
+}
+.task2__item2 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 65%;
+}
+.task2__items {
+    display: flex;
+}
+.task2__item {
+    margin: 0px 5px;
+}
+.t2-n {
+    width: 170px;
+}
+.t2-p{
+    width: 110px;
+}
+.t2-q {
+    width: 80px;
+}
+.t2-s {
+    width: 80px;
+}
+.task2__sum {
+    width: 75%;
+    display: flex;
+    justify-content: flex-end;
+    color: red;
+}
+.task2__sum-item {
+    margin: 0px 10px;
+}
+
+/* ----- Task 3 ----- */
+.task3 {
+    
+    width: 600px;
+    margin: 20px auto;
+    display: flex;
+    flex-direction: column;
+    background-color: azure;
+    margin-bottom: 20px;
+}
+.task3__item1 {
+    display: flex;
+    flex-direction: column;
+    margin: 20px;
+}
+.task3__item2 {
+    display: flex;
+    flex-direction: column;
+    margin: 20px;
+}
+.task3-text {
+    margin: auto;
+    
+}
+.task3-style {
+    width: 85%;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+.task3__out button {
+    color: red;
+    font-size: 20px;
+}
+.task3__result {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.tmp-styles {
+    margin: 10px 20px;
+    padding: 10px;
+    color: red;
+    background-color: antiquewhite;
+}

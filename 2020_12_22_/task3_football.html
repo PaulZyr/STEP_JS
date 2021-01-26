@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style3.css">
+    <title>Zyrianov_2020_12_22_task3_football</title>
+</head>
+<body>
+    <div class="field" id="field">
+        <div class="grass">
+            <div class="grass__line"></div>
+            <div class="grass__line"></div>
+            <div class="grass__line"></div>
+            <div class="grass__line"></div>
+            <div class="grass__line"></div>
+            <div class="grass__line"></div>
+            <div class="grass__line"></div>
+            <div class="grass__line"></div>
+            <div class="grass__line"></div>
+            <div class="grass__line"></div>
+            <div class="grass__line"></div>
+            <div class="grass__line"></div>
+            <div class="grass__line"></div>
+            <div class="grass__line"></div>
+            <div class="grass__line"></div>
+            <div class="grass__line"></div>
+            <div class="grass__line"></div>
+            <div class="grass__line"></div>
+            <div class="grass__line"></div>
+            <div class="grass__line"></div>
+        </div>
+        <div class="inner"></div>
+        <div class="circle"></div>
+        <div class="gateL"></div>
+        <div class="gateR"></div>
+        <div class="penaltyL"></div>
+        <div class="penaltyR"></div>
+        <div class="central_line"></div>
+        <div id="ball" class="ball">
+            <img src="ball.png" alt="">
+        </div>
+    </div>
+    
+
+    <script>
+
+        field.addEventListener('click', (e)=>{
+            let x, y;
+            if(e.clientY < 50)
+            {
+                y = 50;
+            }
+            else if(e.clientY > document.documentElement.clientHeight - 50)
+            {
+                y = document.documentElement.clientHeight - 50;
+            }
+            else{
+                y = e.clientY;
+            }
+            if(e.clientX < 50)
+            {
+                x = 50;
+            }
+            else if(e.clientX > document.documentElement.clientWidth - 50)
+            {
+                x = document.documentElement.clientWidth - 50;
+            }
+            else{
+                x = e.clientX;
+            }
+            ball.style.top = y + 'px';
+            ball.style.left = x + 'px';
+        })
+    </script>
+</body>
+</html>

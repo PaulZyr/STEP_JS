@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0px;
+        }
+        .container {
+            width: 800px;
+            margin: auto;
+            padding: 20px;
+            background-color: azure;
+        }
+        .books__block {
+            display: flex;
+            justify-content: space-between;
+        }
+        .books__input {
+            width: 35%;
+        }
+        .newBook {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+        }
+        .newBook span {
+            display: block;
+            margin-top: 10px;
+        }
+        .books__list {
+            background-color: antiquewhite;
+            width: 60%;
+            padding: 10px;
+        }
+        .books__list h3 {
+            text-align: center;
+        }
+        .book__item {
+            
+            margin: 5px;
+        }
+        .book__item span {
+            font-size: 20px;
+            padding: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="books__block">
+            <div class="books__input">
+                <span><b>Input new book: </b></span>
+                <form class="newBook" action="">
+                    <span>Author: <input type="text" id="bookAuthorInput"></span>
+                    <span>Title: <input type="text" id="bookTitleInput"></span>
+                    <span><button type="reset" id="addBook">add Book</button></span>
+                </form>
+            </div>
+            <div class="books__list">
+                <h3>Books:</h3>
+                <div id="booksArea">
+                    <div class="book__item"><span>--- empty ---</span></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let lastChoosen = false;
+        function Book(author, title) {
+            return {
+                author: author,
+                title: title
+            }
+        }
+        let books = [];
+
+        booksArea.addEventListener('click', (e)=>{
+            document.getSelection().empty();
+            if (e.target.className === 'book__item')
+            {
+                let tmp = document.getElementsByClassName('book__item');
+                e.preventDefault();
+                if(e.ctrlKey)
+                {
+                    lastChoosen = e.target;
+                    if(e.target.style.background === 'none')
+                    {
+                        e.target.style.background = '#FFA984';
+                    }
+                    else
+                    {
+                        e.target.style.background = 'none';
+                    }
+                }
+                else if (e.shiftKey && lastChoosen != false)
+                {
+                    let start, fin;
+                    for (let i = 0; i < tmp.length; ++i)
+                    {
+                        if (tmp[i].id === lastChoosen.id)
+                        {
+                            start = i;
+                        }
+                        if (tmp[i].id === e.target.id)
+                        {
+                            fin = i;
+                        }
+                    }
+                    if (start > fin)
+                    {
+                        let tmpS = start;
+                        start = fin;
+                        fin = tmpS;
+                    }
+                    for (let item of tmp)
+                    {
+                        item.style.background = 'none';
+                    }
+                    for (let i = start; i <= fin; ++i)
+                    {
+                        tmp[i].style.backgroundColor = '#FFA984';
+                    }
+                    lastChoosen = e.target;
+                }
+                else{
+                    if (e.target.id === lastChoosen.id)
+                    {
+                        if (e.target.style.background === 'none')
+                        {
+                            e.target.style.backgroundColor = '#FFA984';
+                        }
+                        else
+                        {
+                            e.target.style.background = 'none';
+                        }
+                    }
+                    else{
+                        lastChoosen = e.target;
+                        for (let it of tmp)
+                        {
+                            if (it.id === e.target.id)
+                            {
+                                it.style.backgroundColor = '#FFA984';
+                            }
+                            else{
+                                it.style.background = 'none';
+                            }
+                        }
+                    }
+                    
+                }
+            }
+        })
+
+        addBook.addEventListener('click', ()=>{
+            books.push(new Book(bookAuthorInput.value, bookTitleInput.value));
+            printBookList();
+        })
+        function printBookList()
+        {
+            let str = '<ol>';
+            for (let i = 0; i < books.length; ++i)
+            {
+                str += `<li class="book__item" id="item${i}">"${books[i].title}" by ${books[i].author}</li>`;
+            }
+            str += '</ol>';
+            booksArea.innerHTML = str;
+        }
+        books.push(new Book('Michael Eric Dyson', "Long Time Coming: Reckoning with Race in America"));
+        books.push(new Book('Arianna Davis', "What Would Frida Do?: A Guide to Living Boldly"));
+        books.push(new Book('Jonathan Lethem', "The Arrest"));
+        books.push(new Book('Bryan Washington', "Memorial"));
+
+        books.push(new Book('Pupkin Vasya', "Torba in one's mind always means Torba in one's life"));
+        books.push(new Book('MacArthur John', "Someone somewhere is singing too loudly"));
+        
+        printBookList();
+
+    </script>
+</body>
+</html>

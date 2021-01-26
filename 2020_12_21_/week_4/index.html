@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="index.js"></script>
+    <link rel="stylesheet" href="style.css">
+    <title>Zyrianov_PE911_2020_12_21</title>
+</head>
+<body>
+    <div class="container">
+        <div class="task_item">
+            <h2>Задание 1</h2>
+            <span>Реализовать класс PrintMaсhine, которой состоит из:
+                <br>размера шрифта;
+                <br>цвета шрифта;
+                <br>семейства шрифта;
+                <br>метода print(), который принимает текст и печатает его
+                соответствующим шрифтом с помощью document.write().
+                <br>Создать объект такого класса и продемонстрировать работу
+                метода.</span>
+        </div>
+        <div class="task_item">
+            <div class="result">
+                <script>
+                    let printer = new PrintMaсhine('24px', 'sans-serif', 'blue');
+                    let str = 'Это текст, который мы передали в объект класса PrintMachine, предварительно созданный через new.';
+                    printer.print(str);
+                </script>
+            </div>
+        </div>
+        <hr>
+        <div class="task_item">
+            <h2>Задание 2</h2>
+            <span>Реализовать класс, описывающий новость (заголовок, текст, массив тегов, дата публикации). 
+            <br>В классе необходимо реализовать один метод print, который выводит всю информацию в таком виде, как на рисунке 1.
+            </span>
+        </div>
+        <div class="task_item">
+            <div class="newsBlock">
+                <script>
+                    let titleNews = 'Lorem is always lorem!';
+                    let txtNews = 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ratione, nam dolorum. Cum adipisci mollitia vero perspiciatis officiis velit harum corrupti dolor molestiae. Saepe fugiat est debitis consectetur fugit inventore nostrum?';
+                    let dateNews = '2020-12-21';
+                    let tagsNews = ['lorem', 'shaurma', 'newyear', 'peace'];
+                    let news = new NewsItem(titleNews, txtNews, dateNews, tagsNews);
+                    news.print();
+                </script>
+            </div>
+        </div>
+        <hr>
+        <div class="task_item">
+            <h2>Задание 3</h2>
+            <span>Реализовать класс, описывающий новостную ленту.
+                <br>Класс должен содержать:
+                <br>массив новостей;
+                <br>get-свойство, которое возвращает количество новостей;
+                <br>метод для вывода на экран всех новостей;
+                <br>метод для добавления новости;
+                <br>метод для удаления новости;
+                <br>метод для сортировки новостей по дате (от последних но-
+                востей до старых);
+                <br>метод для поиска новостей по тегу (возвращает массив
+                новостей, в которых указан переданный в метод тег).
+                <br>Продемонстрировать работу написанных методов.
+            </span>
+        </div>
+        <div class="task_item">
+            <script>
+                checkNewsFeed();
+            </script>
+        </div>
+            
+            
+    </div>
+    
+</body>
+</html>

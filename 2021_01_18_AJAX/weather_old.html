@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="weather.css">
+    <script defer src="weather.js"></script>
+    <!-- <style>
+        body {
+            background-color: azure;
+            padding: 10px 30px;
+            font-size: 18px;
+        }
+        * {
+            box-sizing: border-box;
+            margin: 0px;
+            padding: 0px;
+        }
+        .container {
+            width: 700px;
+            margin: auto;
+            background-color:beige;
+            padding: 20px;
+        }
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .searchButton, .inputSearch {
+            border: none;
+            font-size: 1.2rem;
+            background: none;
+        }
+        .inputSearch {
+            border-bottom: 1px solid gray;
+            width: 200px;
+            margin-right: 10px;
+            padding: 1px 2px;
+        }
+        .formSearch {
+            display: flex;
+            align-items: center;
+        }
+        img {
+            max-width: 100%;
+            max-height: 100%;
+        }
+        .main, .hourly {
+            background-color: aliceblue;
+            padding: 20px;
+            margin: 20px 0px 0px;
+        }
+        .main__title {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .main__items {
+            display: flex;
+            justify-content: space-between;
+        }
+        .main-item {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            
+        }
+        .main-item .mi2 {
+            align-items: center;
+        }
+        .mi3 {
+            width: 30%;
+        }
+        .mi3 div{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .hourly__items {
+            display: flex;
+            justify-content: space-between;
+        }
+        .hourly-item {
+            width: 15%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0px 5px;
+        }
+        .hourly-item .pic {
+            height: 30%;
+        }
+        span {
+            padding: 3px 0px;
+        }
+        .titles {
+            font-size: 1.1rem;
+            font-weight: bold;
+        }
+        .colored {
+            color: blueviolet;
+        }
+        .currTemperature {
+            font-size: 3rem;
+        }
+        .err__info {
+            font-size: 1.5rem;
+            text-align: center;
+            padding: 50px;
+            margin: 20px auto 0px;
+            background-color: aliceblue;
+        }
+        #currTime {
+            padding-left: 10px;
+        }
+    </style> -->
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <span class="titles colored">CURRENT WEATHER</span>
+            <form action="" class="formSearch">
+                <input id="search" type="text" class="inputSearch">
+                <button type="button" id="searchButton" class="searchButton">&#128269;</button>
+            </form>
+        </div>
+        <div class="main">
+            <div class="main__title">
+                <span class="titles colored" id="currCity">City</span>
+                <div><span class="titles colored" id="currDate">Date</span><span class="titles colored" id="currTime"></span></div>
+                
+            </div>
+            <div class="main__items">
+                <div class="main-item mi1">
+                    <span id="forecastMain" class="titles"></span>
+                    <img id="weathMainPic" src="" alt="">
+                </div>
+                <div class="main-item mi2">
+                    <span class="currTemperature" id="currTemperature"></span>
+                </div>
+                <div class="main-item mi3">
+                    <div><span>Min temperature</span><span id="minT"></span></div>
+                    <div><span>Max temperature</span><span id="maxT"></span></div>
+                    <div><span>Wind Speed (km/h)</span><span id="wind"></span></div>
+                </div>
+            </div>
+        </div>
+        <div class="hourly">
+            <span class="titles colored">Hourly</span>
+            <div class="hourly__items">
+                <div class="hourly-item" style="margin-right: 15px; width: 20%;">
+                    <span class="titles" id="currDay"></span>
+                    <div class="pic">
+                        <img id="currIco" src="" alt="">
+                    </div>
+                    <span>Forecast</span>
+                    <span>Temp (&deg;C)</span>
+                    <span>Wind (km/h)</span>
+                </div>
+                <div class="hourly-item">
+                    <span class="titles" id="time1"></span>
+                    <div class="pic">
+                        <img id="pic1" src="" alt="">
+                    </div>
+                    <span id="foreCast1"></span>
+                    <span id="temp1"></span>
+                    <span id="wind1"></span>
+                </div>
+                <div class="hourly-item">
+                    <span class="titles" id="time2"></span>
+                    <div class="pic">
+                        <img id="pic2" src="" alt="">
+                    </div>
+                    <span id="foreCast2"></span>
+                    <span id="temp2"></span>
+                    <span id="wind2"></span>
+                </div>
+                <div class="hourly-item">
+                    <span class="titles" id="time3"></span>
+                    <div class="pic">
+                        <img id="pic3" src="" alt="">
+                    </div>
+                    <span id="foreCast3"></span>
+                    <span id="temp3"></span>
+                    <span id="wind3"></span>
+                </div>
+                <div class="hourly-item">
+                    <span class="titles" id="time4"></span>
+                    <div class="pic">
+                        <img id="pic4" src="" alt="">
+                    </div>
+                    <span id="foreCast4"></span>
+                    <span id="temp4"></span>
+                    <span id="wind4"></span>
+                </div>
+                <div class="hourly-item">
+                    <span class="titles" id="time5"></span>
+                    <div class="pic">
+                        <img id="pic5" src="" alt="">
+                    </div>
+                    <span id="foreCast5"></span>
+                    <span id="temp5"></span>
+                    <span id="wind5"></span>
+                </div>
+                <div class="hourly-item">
+                    <span class="titles" id="time6"></span>
+                    <div class="pic">
+                        <img id="pic6" src="" alt="">
+                    </div>
+                    <span id="foreCast6"></span>
+                    <span id="temp6"></span>
+                    <span id="wind6"></span>
+                </div>
+            </div>
+        </div>
+        <div class="err__info" hidden>
+            <div>404</div>
+            <div>NOT FOUND</div>
+            <div style="font-size: 1.2rem; margin-top: 20px;">Please enter a different city</div>
+        </div>
+    </div>
+
+    <!-- <script>
+        "use strict";
+        let days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+        let main = document.querySelector('.main');
+        let hourly = document.querySelector('.hourly');
+        let err = document.querySelector('.err__info');
+        let today = new Date().toLocaleDateString();
+
+        searchButton.addEventListener('click', (e)=>{
+            if(search.value === '') alert('Input a city name!');
+            else
+            {
+                main.hidden = false;
+                hourly.hidden = false;
+                err.hidden = true;
+                getWeather();
+            }
+        })
+        async function getWeather() {
+            let response = await fetch(`http://api.openweathermap.org/data/2.5/weather?q=${search.value}&appid=4632a6f42d53c3e881705a5e58531546&units=metric`);
+            let weather = await response.json();
+            if(weather.cod === '404')
+            {
+                main.hidden = true;
+                hourly.hidden = true;
+                err.hidden = false;
+            }
+            else
+            {
+                showMain(weather);
+                response = await fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${weather.coord.lat}&lon=${weather.coord.lon}&exclude={part}&appid=4632a6f42d53c3e881705a5e58531546&units=metric`);
+                weather = await response.json();
+                showHourly(weather);
+            }
+        }
+        function showMain(weather)
+        {
+            currCity.innerText = weather.name;
+            forecastMain.innerText = weather.weather[0].main;
+            currIco.src = weathMainPic.src = `https://openweathermap.org/themes/openweathermap/assets/vendor/owm/img/widgets/${weather.weather[0].icon}.png`;
+            currTemperature.innerHTML = `${Math.round(weather.main.temp)}&deg;C`;
+            minT.innerHTML = Math.round(weather.main.temp_min) + '&deg;C';
+            maxT.innerHTML = Math.round(weather.main.temp_max) + '&deg;C';
+            wind.innerText = weather.wind.speed;
+            
+        }
+        function showHourly(weather)
+        {
+            //console.log('weather in showHourly', weather);
+            let date = new Date();
+            //console.log('+weather.timezone_offset-7200', +weather.timezone_offset-7200);
+            date.setUTCSeconds(+weather.timezone_offset-7200);
+            //console.log('data new = ', date);
+            currDay.innerText = days[date.getDay()];
+            currTime.innerText = date.toLocaleTimeString();
+            currDate.innerText = date.toLocaleDateString();
+            let hour = date.getHours();
+            for (let i = 1; i<=6; ++i)
+            {
+                let key = +3*i;
+                let time = document.getElementById(`time${i}`);
+                time.innerText = `${(+hour+3*i) % 24}:00`;
+                let temp = document.getElementById(`temp${i}`);
+                temp.innerText = Math.round(weather.hourly[key].temp);
+                let wind = document.getElementById(`wind${i}`);
+                wind.innerText = weather.hourly[key].wind_speed;
+                let pic = document.getElementById(`pic${i}`);
+                pic.src = `https://openweathermap.org/themes/openweathermap/assets/vendor/owm/img/widgets/${weather.hourly[key].weather[0].icon}.png`;
+                let fore = document.getElementById(`foreCast${i}`);
+                fore.innerText = weather.hourly[key].weather[0].main;
+            }
+            search.value = '';
+        }
+    </script> -->
+</body>
+</html>

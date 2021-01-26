@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movies2</title>
+    <link rel="stylesheet" href="style.css">
+    <script defer src="movie2.js"></script>
+</head>
+<body>
+    <div class="container">
+
+        <div class="search" id="search">
+            <h3>Search:</h3>
+            <form action="">
+                <label for=""><span>Title: </span><input type="text" id="titleSearch" value=""></label>
+                <label for="">
+                    <span>Type: </span>
+                    <select name="" id="typeSearch">
+                        <option value="movie" selected>Movie</option>
+                        <option value="series">Series</option>
+                        <option value="episode">Episode</option>
+                    </select>
+                </label>
+                <label for="">
+                    <button type="button" id="searchButton">Search</button>
+                </label>
+            </form>
+        </div>
+        <div id="icoSearch"></div>
+        <h4 id="films" hidden>Films:</h4>
+        <div class="result" id="result"></div>
+        <div id="icoResult"></div>
+        <div class="nav" id="nav"></div>
+        <div id="icoDetails"></div>
+        <div class="showDet" id="showDet" hidden>
+            <h4>Film info:</h4>
+            <div class="info_block">
+                <div class="picture">
+                    <img id="pictDet" src="" alt="">
+                </div>
+                <div class="infoDetails">
+                    <div class="row">
+                        <span>Title: </span><div id="titleDetails"></div>
+                    </div>
+                    <div class="row">
+                        <span>Released: </span><div id="releaseDetails"></div>
+                    </div>
+                    <div class="row">
+                        <span>Genre: </span><div id="genreDetails"></div>
+                    </div>
+                    <div class="row">
+                        <span>Country: </span><div id="countryDetails"></div>
+                    </div>
+                    <div class="row">
+                        <span>Director: </span><div id="directorDetails"></div>
+                    </div>
+                    <div class="row">
+                        <span>Writer: </span><div id="writerDetails"></div>
+                    </div>
+                    <div class="row">
+                        <span>Actors: </span><div id="actorsDetails"></div>
+                    </div>
+                    <div class="row">
+                        <span>Awards: </span><div id="awardsDetails"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

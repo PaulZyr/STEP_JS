@@ -1,0 +1,38 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Классная работа</title>
+    <script src="jquery-3.5.1.min.js"></script>
+    <script>
+
+        // Ваш код
+
+    </script>
+    <style>
+        span {
+            color: blue;
+            font-weight: bold;
+        }
+
+        button {
+            width: 100px;
+        }
+    </style>
+</head>
+<body>
+
+    <div>
+        <button disabled="disabled">First</button>
+        - <span></span></div>
+    <div>
+        <button>Second</button>
+        - <span></span></div>
+    <div>
+        <button disabled="disabled">Third</button>
+        - <span></span></div>
+    
+    <script>
+        $('button:disabled').next('span').text('This button is disabled');
+    </script>
+</body>
+</html>

@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            background-color: #ebebeb;
+            margin: 0px;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 14px;
+            }
+        * {
+            box-sizing: border-box;
+        }
+        .description {
+            width: 800px;
+            margin: auto;
+        }
+        .container {
+            position: relative;
+            width: 1000px;
+            background-color: beige;
+            display: flex;
+            margin: 20px auto;
+        }
+        .cards {
+            width: 65%;
+            display: flex;
+            justify-content: space-between;
+            /* flex-wrap: wrap; */
+            padding: 10px 10px 10px 0px;
+        }
+        .card {
+            width: 33%;
+            margin-left: 10px;
+            padding: 15px;
+            border: 1px solid gray;
+            background-color: antiquewhite;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            position: relative;
+        }
+        img {
+            width: 100%;
+        }
+        .card__title h4 {
+            margin: 5px 0px;
+        }
+        .card__price {
+            position: absolute;
+            bottom: 40px;
+            right: 15px;
+            font-weight: bold;
+        }
+        .card__button {
+            width: 100%;
+        }
+        .order {
+            width: 35%;
+            padding: 10px;
+            margin: 10px;
+            margin-left: 0px;
+            border: 1px solid gray;
+            background-color: antiquewhite;
+        }
+        .order__row {
+            display: flex;
+            justify-content: space-between;
+            margin: 5px;
+        }
+        input {
+            width: 100%;
+        }
+        textarea {
+            width: 100%;
+            height: 120px;
+        }
+        .span__input {
+            width: 200px;
+            border: 2px solid gray;
+            border-radius: 3px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        button {
+            width: 100%;
+            border: 2px solid gray;
+            border-radius: 3px;
+            font-weight: bold;
+        }
+        .result {
+            position: absolute;
+            left: 50%;
+            top: 50px;
+            transform: translateX(-50%);
+            width: 400px;
+            height: 150px;
+            padding: 10px;
+            background-color: antiquewhite;
+            border: 2px solid gray;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="description">
+        <h2>Задание 4</h2>
+        <p>Создать html-страницу для магазина книг. <br>
+            Пользователь должен иметь возможность выбрать книгу,
+            указать количество экземпляров, ввести свое имя, дату доставки,
+            адрес доставки и комментарий.<br>
+            После заполнения формы необходимо вывести на экран:<br> «Имя
+            покупателя, спасибо за заказ. Такой-то товар будет доставлен в
+            такую-то дату по такому-то адресу».</p>
+    </div>
+    <div class="container">
+        <div class="cards">
+            <div class="card">
+                <div class="card__title">
+                    <img src="pic/programming.jpg" alt="">
+                    <h4 id="name1">Programming JavaScript Applications: Robust Web Architecture with Node, HTML5, and Modern JS Libraries</h4>
+                    <span>Eric Elliott</span>
+                </div>
+                <div class="card__button"><button type="button" class="selectButton" id="s1">Select</button></div>
+                <div class="card__price" id="price1">$33</div>
+            </div>
+            <div class="card">
+                <div class="card__title">
+                    <img src="pic/definitive.jpg" alt="">
+                    <h4 id="name2">JavaScript: The Definitive Guide: Master the World's Most-Used Programming Language</h4>
+                    <span>David Flanagan</span>
+                </div>
+                <div class="card__button"><button type="button" class="selectButton" id="s2">Select</button></div>
+                <div class="card__price" id="price2">$22</div>
+            </div>
+            <div class="card">
+                <div class="card__title">
+                    <img src="pic/modern.jpg" alt="">
+                    <h4 id="name3">Modern JavaScript for the Impatient 1st Edition</h4>
+                    <span>Cay Horstmann</span>
+                </div>
+                <div class="card__button"><button type="button" class="selectButton" id="s3">Select</button></div>
+                <div class="card__price" id="price3">$18</div>
+            </div>
+        </div>
+        <div class="order">
+            <form action="">
+                <div class="order__row"><span>Book:</span><span class="span__input" id="bookName"></span></div>
+                <div class="order__row"><span>Quantity:</span><span class="span__input"><input id="quantity" type="number" min="1" max="10" required></span></div>
+                <div class="order__row"><span>Name:</span><span class="span__input"><input id="nameInput" type="text" required></span></div>
+                <div class="order__row"><span>Delivery address:</span><span class="span__input"><textarea name="" id="address" required></textarea></span></div>
+                <div class="order__row"><span>Delivery date:</span><span class="span__input"><input id="delivDate" type="date" required></span></div>
+                <div class="order__row"><span>Comment:</span><span class="span__input"><textarea name="" id=""></textarea></span></div>
+                <div class="order__row"><button type="button" id="buyButton">Buy</button></div>
+            </form>
+        </div>
+        <div class="result" id="result">
+            <p id="resName"></p>
+            <p id="resInfo"></p>
+        </div>
+    </div>
+    
+    <script>
+        let price = 0;
+        document.addEventListener('click', (e)=>{
+            if(e.target.className === 'selectButton')
+            {
+                let num = e.target.id.slice(1);
+                bookName.innerHTML = document.getElementById(`name${num}`).innerHTML.slice(0, 28);
+                price = parseInt(document.getElementById(`price${num}`).innerHTML.slice(1));
+            }
+            else if (e.target.id === 'buyButton')
+            {
+                e.preventDefault();
+                if(checkInputs())
+                {
+                    let totalPrice = 
+                    resName.innerHTML = `<i>${nameInput.value}</i>, thanks for the order!`;
+                    resInfo.innerHTML = `Book "<i>${bookName.value}</i>" will be delivered on 
+                    <i>${delivDate.value}</i> <br> to <i>${address.value}</i> <br> Total price: $${price * quantity.value}`;
+                    result.style.display = 'block';
+                }
+            }
+        })
+
+        function checkInputs()
+        {
+            if (bookName.innerHTML.length < 3)
+            {
+                alert('Нельзя купить книгу, если Вы ее не выбрали...');
+                return false;
+            }
+            if (quantity.value < 1 || quantity.value > 10)
+            {
+                alert('Вы не указали сколько книг Вы хотите...');
+                return false;
+            }
+            if (nameInput.value.length < 1)
+            {
+                alert('Вы не указали имя покупателя...');
+                return false;
+            }
+            if (address.value.length === 0)
+            {
+                alert('Вы не указали адрес доставки...');
+                return false;
+            }
+
+            let today = new Date().toISOString().slice(0,10);
+            if (delivDate.value < today)
+            {
+                alert('мы не доставляем в прошлое...');
+                return false;
+            }
+            if (delivDate.value === today)
+            {
+                alert('мы не успеем доставить сегодня ...');
+                return false;
+            }
+            return true;
+        }
+    </script>
+</body>
+</html>

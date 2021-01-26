@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            background-color: azure;
+        }
+        * {
+            box-sizing: border-box;
+            margin: 0px;
+            padding: 0px;
+        }
+        .container {
+            position: relative;
+            width: 1200px;
+            margin: 20px auto;
+            display: flex;
+            justify-content: center;
+            align-content: center;
+        }
+        canvas {
+            width: 1000px;
+            height: 600px;
+            border: 1px solid gray;
+            position: absolute;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <canvas class="canvas" id="canvas" ></canvas>
+        <canvas class="canvas" id="canvas2" ></canvas>
+    </div>
+    
+    <script>
+        let canvas = document.getElementById('canvas');
+        let figure = canvas.getContext('2d');
+        let canvas2 = document.getElementById('canvas2');
+        let figure2 = canvas2.getContext('2d');
+        makeSquare(figure, 40, 40, 'green');
+        makeSquare(figure2, 50, 50, 'blue');
+
+        function makeSquare(figure, x, y, color)
+        {
+            figure.beginPath();
+            figure.moveTo(x, y);
+            figure.lineTo(x+50, y);
+            figure.lineTo(x+50, y+50);
+            figure.lineTo(x, y+50);
+            figure.lineTo(x, y);
+            figure.closePath();
+            figure.fillStyle = color;
+            figure.stroke();
+            figure.fill();
+        }
+
+        document.addEventListener('click', (e)=>{
+            if(e.target.id === 'canvas2')
+            {
+                console.log('canvas2');
+            }
+        })
+
+    </script>
+</body>
+</html>

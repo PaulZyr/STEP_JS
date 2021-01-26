@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movies</title>
+    <style>
+        body {
+            background-color: azure;
+            padding: 10px 30px;
+        }
+        * {
+            box-sizing: border-box;
+            margin: 0px;
+            padding: 0px;
+        }
+        .search {
+            width: 450px;
+            margin: 20px auto;
+            padding: 30px;
+            background-color: antiquewhite;
+            
+        }
+        .search h3{
+            text-align: center;
+            margin-bottom: 10px;
+        }
+        form {
+            width: 340px;
+            margin: auto;
+            border: 1px solid gray;
+            border-radius: 10px;
+            display: flex;
+            flex-direction: column;
+            padding: 10px;
+        }
+        label {
+            margin: 5px 0px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        input, select {
+            width: 250px;
+            height: 25px;
+        }
+        button {
+            width: 100%;
+            height: 25px;
+        }
+        img {
+            max-width: 100%;
+            max-height: 100%;
+        }
+        .result {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .res-item {
+            margin: 10px;
+            display: flex;
+            padding: 20px;
+            border: 1px solid gray;
+            background-color: bisque;
+            width: 300px;
+            height: 200px;
+        }
+        .left{
+            width: 45%;
+        }
+        .right {
+            margin-left: 20px;
+            width: 50%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+        }
+        .nav {
+            margin: 20px auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .nav-item {
+            border: 1px solid gray;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .nav-item:hover {
+            cursor: pointer;
+            color: brown;
+            font-weight: bold;
+        }
+        .showDet {
+            width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: antiquewhite;
+        }
+        .showDet h5 {
+            text-align: center;
+        }
+        .info_block {
+            margin-top: 10px;
+            padding: 20px;
+            display: flex;
+            border: 1px solid gray;
+            border-radius: 10px;
+            display: flex;
+            justify-content: space-between;
+        }
+        .picture {
+            width: 40%;
+        }
+        .infoDetails {
+            width: 60%;
+            margin-left: 20px;
+        }
+        .infoDetails .row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin: 5px 0px;
+        }
+        .infoDetails .row div{
+            width: 75%;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="search" id="search">
+        <h3>Search:</h3>
+        <form action="">
+            <label for=""><span>Title: </span><input type="text" id="titleSearch"></label>
+            <label for="">
+                <span>Type: </span>
+                <select name="" id="typeSearch">
+                    <option value="movie" selected>Movie</option>
+                    <option value="series">Series</option>
+                    <option value="episode">Episode</option>
+                </select>
+            </label>
+            <label for="">
+                <button type="button" id="searchButton">Search</button>
+            </label>
+        </form>
+        <div class="loadIco" id="loadIco">
+
+        </div>
+    </div>
+    <div class="result" id="result"></div>
+    <div class="nav" id="nav"></div>
+    <div class="showDet" id="showDet" hidden>
+        <h5>Film info:</h5>
+        <div class="info_block">
+            <div class="picture">
+                <img id="pictDet" src="" alt="">
+            </div>
+            <div class="infoDetails">
+                <div class="row">
+                    <span>Title: </span><div id="titleDetails"></div>
+                </div>
+                <div class="row">
+                    <span>Released: </span><div id="releaseDetails"></div>
+                </div>
+                <div class="row">
+                    <span>Genre: </span><div id="genreDetails"></div>
+                </div>
+                <div class="row">
+                    <span>Country: </span><div id="countryDetails"></div>
+                </div>
+                <div class="row">
+                    <span>Director: </span><div id="directorDetails"></div>
+                </div>
+                <div class="row">
+                    <span>Writer: </span><div id="writerDetails"></div>
+                </div>
+                <div class="row">
+                    <span>Actors: </span><div id="actorsDetails"></div>
+                </div>
+                <div class="row">
+                    <span>Awards: </span><div id="awardsDetails"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        "use strict";
+        let k = 1;
+        let movies;
+        let title;
+        searchButton.addEventListener('click', ()=>{
+            title = titleSearch.value;
+            if(title !== '')
+            {
+                k = 1;
+                showDet.hidden = true;
+                getInfo(title, typeSearch.value, k);
+            }
+            else {
+                alert("Input title!");
+            }
+        })
+        document.addEventListener('click', (e)=>{
+            if(e.target.className === 'details')
+            {
+                getDetails(e.target.dataset.imdbid);
+                showDet.hidden = false;
+            }
+        })
+        document.addEventListener('click', (e)=>{
+            if (e.target.className === 'nav-item')
+            {
+                showDet.hidden = true;
+                k = e.target.id;
+                getInfo(title, typeSearch.value, k);
+            }
+        })
+
+        let getDetails = function(imdbID)
+        {
+            let Q = new XMLHttpRequest();
+            Q.onreadystatechange = function()
+            {
+                if(Q.readyState !== 4) return;
+
+                if(Q.status === 200)
+                {
+                    console.log('imdbID', imdbID ,'Q', Q);
+                    showDetails(Q);
+                }
+            }
+            Q.open('GET', `http://www.omdbapi.com/?apikey=cd3aa8a7&i=${imdbID}`);
+            Q.send();
+        }
+
+        let getInfo = function(title, type, page)
+        {
+            let q = new XMLHttpRequest();
+            q.onreadystatechange = function()
+            {
+                if(q.readyState !== 4) return;
+
+                if(q.status === 200)
+                {
+                    renderMovies(q);
+                }
+            }
+            q.open('GET', `http://www.omdbapi.com/?apikey=cd3aa8a7&s=${title}&type=${type}&page=${page}`);
+            q.send();
+        }
+        function renderMovies(data)
+        {
+            movies = JSON.parse(data.responseText);
+            result.innerHTML = '';
+            console.log("movies.Response === 'True'", movies.Response === 'True');
+            if (movies.Response === 'True')
+            {
+                for(let movie of movies.Search)
+                {
+                    createItem(movie);
+                }
+                createNav();
+            }
+            else {
+                result.innerHTML = movies.Error;
+            }
+        }
+        function createItem(item)
+        {
+            let div = document.createElement('div');
+            div.className = 'res-item';
+            div.innerHTML = `<div class="left"><img src="${item.Poster}" alt=""></div>
+                <div class="right"><span>movie</span><h4>${item.Title}</h4>
+                <span>${item.Year}</span><button class="details" type="button" data-imdbID="${item.imdbID}">Details</button></div>`;
+            result.append(div);
+        }
+        function createNav()
+        {
+            nav.innerHTML = '';
+            createNavItem('<<',1)
+            for(let i = k; i <= +k+5; i++)
+            {
+                createNavItem(i,i);
+            }
+            createNavItem('>>',+k+6);
+        }
+        function createNavItem(i,n)
+        {
+            let div = document.createElement('div');
+            div.className = 'nav-item';
+            div.innerText = i;
+            div.id = n;
+            nav.append(div);
+            console.log(div);
+        }
+        function showDetails(data)
+        {
+            let dtl = JSON.parse(data.response);
+            console.log('dtl', dtl);
+            titleDetails.innerText = dtl.Title;
+            releaseDetails.innerText = dtl.Released;
+            genreDetails.innerText = dtl.Genre;
+            countryDetails.innerText = dtl.Country;
+            directorDetails.innerText = dtl.Director;
+            writerDetails.innerText = dtl.Writer;
+            actorsDetails.innerText = dtl.Actors;
+            awardsDetails.innerText = dtl.Awards;
+            pictDet.src = dtl.Poster;
+        }
+    </script>
+</body>
+</html>

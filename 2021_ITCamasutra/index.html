@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        class Samurai {
+            constructor(name) {
+                this.name = name;
+            }
+            hello() {alert(this.name)};
+        }
+
+        let shogun = new Samurai("Dimych");
+        console.log('1',shogun.__proto__.__proto__);
+        console.log('2', shogun.__proto__.constructor.__proto__);
+        console.log('3', shogun.__proto__.__proto__.__proto__);
+
+        debugger
+    </script>
+</body>
+</html>

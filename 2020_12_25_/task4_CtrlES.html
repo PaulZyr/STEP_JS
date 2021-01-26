@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0px;
+        }
+        .description {
+            width: 400px;
+            margin: auto;
+        }
+        hr {
+            margin: 20px 0px;
+        }
+        .result {
+            padding: 20px;
+            position: relative;
+            width: 400px;
+            margin: auto;
+            background-color: antiquewhite;
+        }
+        .resutl__item {
+            position: absolute;
+            width: 400px;
+            height: 200px;
+            background-color: greenyellow;
+        }
+        textarea {
+            width: 390px;
+            height: 150px;
+            margin: auto;
+            font-size: 16px;
+        }
+
+
+    </style>
+</head>
+<body>
+    <div class="description">
+        <h2>Задание 4</h2>
+        <p>Создать html-страницу для отображения/редактирования текста. <br>
+            При открытии страницы текст отображается с помощью тега
+            div. При нажатии Ctrl + E, вместо div появляется textarea с тем
+            же текстом, который теперь можно редактировать. При нажатии
+            Ctrl + S, вместо textarea появляет div с уже измененным текстом.
+            Не забудьте выключить поведение по умолчанию для этих соче-
+            таний клавиш.</p>
+    </div>
+    
+    <div class="result">
+        <div><span>Press Ctrl+E for edit text</span></div>
+        <div><span>Press Ctrl+S for save text</span></div>
+        
+        <hr>
+        <div id="divArea">
+            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eveniet suscipit quae inventore ullam atque ratione tenetur excepturi, voluptates fugit necessitatibus laudantium voluptate minus nesciunt a veritatis, repellat aliquid pariatur assumenda?
+        </div>
+        <div id="txtArea">
+            <textarea name="" id="mytxt"></textarea>
+        </div>
+    </div>
+
+    <script>
+        txtArea.hidden = true;
+        document.addEventListener('keydown', (e)=>{
+            console.log(e.keyCode);
+            if(e.ctrlKey)
+            {
+                e.preventDefault();
+                if(e.keyCode === 69)
+                {
+                    mytxt.innerText = divArea.innerText;
+                    txtArea.hidden = false;
+                    divArea.hidden = true;
+                }
+                else if(e.keyCode === 83)
+                {
+                    divArea.innerText = mytxt.value;
+                    txtArea.hidden = true;
+                    divArea.hidden = false;
+                }
+            }
+        })
+
+    </script>
+    
+</body>
+</html>

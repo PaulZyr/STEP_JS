@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            background-color: azure;
+        }
+        * {
+            box-sizing: border-box;
+            margin: 0px;
+            padding: 0px;
+        }
+        .container {
+            position: relative;
+            width: 800px;
+            margin: auto;
+            background-color: bisque;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: flex-end;
+        }
+        textarea {
+            height: 350px;
+            width: 300px;
+            margin: 0px;
+        }
+        button {
+            height: 350px;
+            width: 30px;
+            margin: 0px 20px 5px;
+        }
+        .result {
+            background-color: white;
+            border: 1px solid black;
+            height: 350px;
+            width: 300px;
+            margin-bottom: 5px;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="left">
+            <h5>Enter JSON data:</h5>
+            <textarea name="" id="left" cols="30" rows="10"></textarea>
+    
+        </div>
+        <div class="center"><button type="button" id="doIt">J</button></div>
+        
+        <div class="right">
+            <h5>Formatted JSON data:</h5>
+            <pre class="result" id="result"></pre>
+        </div>
+    </div>
+    
+
+    
+    <script>
+        document.addEventListener('click', (e)=>{
+            if (e.target.id==='doIt')
+            {
+                let myJSON;
+                try{
+                    myJSON = JSON.parse(left.value);
+                }
+                catch(err)
+                {
+                    result.innerText = 'ERROR FORMAT!';
+                    return;
+                }
+                result.innerText = JSON.stringify(myJSON, null, 2);
+                //result.innerText = JSON.stringify(JSON.parse(left.value), null, 4);
+            }
+        })
+    </script>
+</body>
+</html>

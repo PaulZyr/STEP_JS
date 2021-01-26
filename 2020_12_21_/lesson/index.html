@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p>here</p>
+    <script>
+        let str = "петя быстренько бежал по полю";
+
+        console.log("Task 2");
+        console.log(str);
+        console.log(myStrToUpper(str));
+
+        console.log("Task 3");
+        console.log(vowelsInString(str));
+
+        console.log("Task 4");
+        console.log(str);
+        console.log(spamFounder(str));
+        let str2 = "Выгодное предложение! Только СЕГОДНЯ!";
+        console.log(str2);
+        console.log(spamFounder(str2));
+
+        console.log("Task 5");
+        console.log(str2);
+        console.log("Сокращаем до 8 символов.");
+
+        console.log(cutString(str2, 8));
+
+        console.log("Task 6");
+        let str3 = "Торба";
+        let str4 = "алабала";
+        console.log(str3);
+        console.log(palindrom(str3));
+        console.log(str4);
+        console.log(palindrom(str4));
+
+        console.log("Task 7");
+        console.log(str2);
+        console.log("Слов в предложении " + countWords(str2));
+
+        console.log("Task 8");
+        console.log(longestWord(str2));
+
+        console.log("Task 9");
+        console.log(averageLength(str2));
+
+        console.log("Task 10");
+        console.log(positions(str2, 'о'));
+
+        // --------------------------------------------------------
+        function myStrToUpper(str)
+        {
+            return str[0].toUpperCase() + str.slice(1);
+        }
+
+        function vowelsInString(str) {
+            let n = 0;
+            for (let i=0; i < str.length; ++i)
+            {
+                if (str[i] === 'а' || str[i] === 'о' || str[i] === 'е'
+                || str[i] === 'у'|| str[i] === 'ы'|| str[i] === 'я'
+                || str[i] === 'и' || str[i] === 'ю')
+                {
+                    n++;
+                }
+            }
+            return "В предложении " + n + " гласных";  
+        }
+
+        function spamFounder(str) {
+            str = str.toUpperCase();
+            if(str.indexOf("100%") !== -1 
+            || str.indexOf("БЕСПЛАТНО") !== -1
+            || str.indexOf("УВЕЛИЧЕНИЕ ПРОДАЖ") !== -1
+            || str.indexOf("НЕ УДАЛЯЙТЕ") !== -1
+            || str.indexOf("ТОЛЬКО СЕГОДНЯ") !== -1
+            || str.indexOf("ХХХ") !== -1)
+            {
+                return "Это спам!";
+            }
+            return "Это не спам!";
+        }
+
+        function cutString(str, n)
+        {
+            return str.slice(0, n-3) + "...";
+        }
+
+        function palindrom(str)
+        {
+            for (let i=0, j=str.length-1; i < str.length / 2; ++i, --j)
+            {
+                if (str[i] !== str[j]) return "Не палиндром!";
+            }
+            return "Палиндром!";
+        }
+
+        function countWords(str)
+        {
+            let tmp = str.split(' ');
+            return tmp.length;
+        }
+
+        function longestWord(str)
+        {
+            let tmp = str.split(' ');
+            let s = tmp[0];
+            for (let i = 0; i < tmp.length; i++)
+            {
+                if(s.length < tmp[i].length)
+                {
+                    s = tmp[i];
+                }
+            }
+            return "Самое длинное слово: " + s;
+        }
+
+        function averageLength(str)
+        {
+            let tmp = str.split(' ');
+            let k = 0;
+            for (let i = 0; i < tmp.length; i++)
+            {
+                k += tmp[i].length;
+            }
+            return "Средняя длина: " + Math.floor(k/tmp.length);
+        }
+
+        function positions(str, c)
+        {
+            c = c.toUpperCase();
+            let s = '';
+            for(let i = 0; i < str.length; ++i)
+            {
+                if(str[i].toUpperCase() === c)
+                {
+                    s += i + ' ';
+                }
+            }
+            return "Позиции: " + s;
+        }
+
+    </script>
+</body>
+</html>

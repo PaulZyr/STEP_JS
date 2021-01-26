@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            background-color: azure;
+        }
+        * {
+            box-sizing: border-box;
+            margin: 0px;
+            padding: 0px;
+        }
+        .description {
+            width: 600px;
+            margin: auto;
+        }
+        .container {
+            width: 650px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: bisque;
+            position: relative;
+        }
+        .selecting {
+            margin: auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .select__item {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .select__item span {
+            padding-right: 5px;
+        }
+        .searchButton, .bookButton {
+            width: 100px;
+            height: 25px;
+            border-radius: 5px;
+        }
+        hr {
+            margin: 20px 0px;
+        }
+        .result {
+            border: 1px solid gray;
+            border-radius: 10px;
+            padding: 10px;
+            display: flex;
+            justify-content: space-between;
+        }
+        .cmp {
+            width: 14%;
+            border: 0.5px solid gray;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+        .cmpCell {
+            width: 49%;
+            border: 1px solid gray;
+            display: flex;
+            justify-content: space-evenly;
+            align-items: center;
+        }
+        .booking {
+            margin-top: 20px;
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+        }
+        .totalPrice {
+            padding: 0px 10px;
+        }
+        .booked {
+            position: absolute;
+            left: 50%;
+            top: 30px;
+            transform: translateX(-50%);
+            background-color: burlywood;
+            width: 500px;
+            padding: 20px;
+        }
+        .booked__row {
+            display: flex;
+            align-items: center;
+            /* margin-top: 10px; */
+        }
+        .booked-cell {
+            width: 30%;
+            padding: 5px 0px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: 1px solid gray;
+        }
+        .booked-cell:first-child {
+            width: 50%;
+        }
+        .booked-cell:last-child {
+            width: 20%;
+        }
+    </style>
+</head>
+<body>
+    <div class="description">
+        <h2>Задание 6</h2>
+        <p>Создать html-страницу с возможностью забронировать билеты
+            на поезд. <br> Для начала пользователь выбирает направление поезда
+            и дату поездки, дальше отмечает места для брони. <br>Также добавить
+            возможность посмотреть уже забронированные билеты. <br>Хранить
+            информацию в заранее подготовленных массивах.</p>
+    </div>
+    <div class="container">
+        <div>
+            <form action="" class="selecting">
+                <div class="select__item">
+                    <span>Direction:</span>
+                    <select name="" id="selectDirection">
+                        <option value="s0">--------------------</option>
+                    </select>
+                </div>
+                <div class="select__item">
+                    <span>Date:</span>
+                    <input type="date" id="selectDate">
+                </div>
+                <div>
+                    <button type="button" class="searchButton" id="searchButton">Search</button>
+                </div>
+            </form>
+        </div>
+        <hr>
+
+        <div id="ticketArea" hidden>
+            <div class="result" id="result"></div>
+
+            <div class="booking">
+                <span>Total price:</span>
+                <div class="totalPrice" id="totalPrice">$42</div>
+                <button type="button" class="bookButton" id="bookButton">Book</button>
+            </div>
+        </div>
+        
+        
+
+        <div class="booked" id="booked" hidden>
+            <h4>My tickets:</h4>
+            <div class="booked__row">
+                <div class="booked-cell"><span><b>Direction</b></span></div>
+                <div class="booked-cell"><span><b>Date</b></span></div>
+                <div class="booked-cell"><span><b>Seat</b></span></div>
+            </div>
+            <div id="bookedRows"></div>
+        </div>
+
+    </div>
+
+    <script>
+        let direction = [];
+        let trains = [];
+        let trainNow;
+        let myTickets = [];
+
+        direction.push('Kiev-Khmelnitsky');
+        direction.push('Odesa-Khmelnitsky');
+        direction.push('Khmelnitsky-Kiev');
+        direction.push('Khmelnitsky-Odesa');
+
+        for (let i = 0; i < direction.length; ++i)
+        {
+            let opt = document.createElement('option');
+            opt.value = i;
+            opt.innerText = direction[i];
+            selectDirection.append(opt);
+        }
+
+        document.addEventListener('click', (e)=>{
+            if (e.target.id === 'searchButton')
+            {
+                e.preventDefault();
+                if (checkSearch())
+                {
+                    trainNow = searchTrain();
+                    showTickets();
+                }
+            }
+            else if (e.target.id === 'bookButton')
+            {
+                if (trainNow !== undefined)
+                {
+                    bookTickets();
+                    showTickets();
+                    myTickets = [];
+                }
+            }
+        })
+        booked.addEventListener('click', e=>{
+            booked.hidden = true;
+        })
+
+        function checkSearch()
+        {
+            if (selectDirection.value === 's0')
+            {
+                alert('Choose DIRECTION!');
+                return false;
+            }
+            let today = new Date().toISOString().slice(0,10);
+            if (selectDate.value < today)
+            {
+                alert('That train already gone...\nChoose any day after today');
+                return false;
+            }
+            return true;
+        }
+
+
+        function bookTickets()
+        {
+            let tickets = document.querySelectorAll('input:checked');
+            for (let item of tickets)
+            {
+                let num = item.id.substr(2);
+                
+                if (!trainNow.places.includes(num))
+                {
+                    trainNow.places.push(num);
+                    myTickets.push(num);
+                }
+            }
+            if (myTickets.length > 0)
+            {
+                showBooked();
+            }
+        }
+
+        function showBooked()
+        {
+            bookedRows.innerHTML = '';
+            booked.hidden = false;
+            for(let item of myTickets)
+            {
+                let div = document.createElement('div');
+                div.className = 'booked__row';
+                div.innerHTML = `<div class="booked-cell"><span>${trainNow.direction}</span></div>
+                <div class="booked-cell"><span>${trainNow.date}</span></div>
+                <div class="booked-cell"><span>${item}</span></div>`;
+                bookedRows.append(div);
+            }
+        }
+
+        function showTickets()
+        {
+            ticketArea.hidden = false;
+            result.innerHTML = '';
+            for(let i=1; i<=25; i+=4)
+            {
+                let div = document.createElement('div');
+                div.className = 'cmp';
+                div.innerHTML = `<div class="cmpCell"><input type="checkbox" id='id${i+1}'>${i+1}</div>
+                    <div class="cmpCell"><input type="checkbox" id='id${i+3}'>${i+3}</div>
+                    <div class="cmpCell"><input type="checkbox" id='id${i}'>${i}</div>
+                    <div class="cmpCell"><input type="checkbox" id='id${i+2}'>${i+2}</div>`;
+                result.append(div);
+            }
+            for (let place of trainNow.places)
+            {
+                let tmp = document.querySelector(`#id${place}`).parentElement;
+                tmp.innerHTML = tmp.innerHTML.replace(`<input type="checkbox" id="id${place}">`, '');
+            }
+        }
+
+        function searchTrain()
+        {
+            let dir = direction[selectDirection.value];
+            let date = selectDate.value;
+            for (let train of trains)
+            {
+                if (train.direction === dir && train.date === date)
+                {
+                    return train;
+                }
+            }
+            let train = new Train(dir, date);
+            trains.push(train);
+            return train;
+        }
+
+        function Train(direction, date)
+        {
+            let places = [];
+            return {
+                'direction': direction,
+                'date': date,
+                'places': places
+            }
+        }
+    </script>
+</body>
+</html>

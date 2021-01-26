@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="weather.css">
+    <script defer src="weather.js"></script>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <span class="titles colored">CURRENT WEATHER</span>
+            <form action="" class="formSearch">
+                <input id="search" type="text" class="inputSearch">
+                <button type="button" id="searchButton" class="searchButton">&#128269;</button>
+            </form>
+        </div>
+        <div class="main">
+            <div class="main__title">
+                <span class="titles colored" id="currCity">City</span>
+                <div><span class="titles colored" id="currDate">Date</span><span class="titles colored" id="currTime"></span></div>
+                
+            </div>
+            <div class="main__items">
+                <div class="main-item mi1">
+                    <span id="forecastMain" class="titles"></span>
+                    <img id="weathMainPic" src="" alt="">
+                </div>
+                <div class="main-item mi2">
+                    <span class="currTemperature" id="currTemperature"></span>
+                </div>
+                <div class="main-item mi3">
+                    <div><span>Min temperature</span><span id="minT"></span></div>
+                    <div><span>Max temperature</span><span id="maxT"></span></div>
+                    <div><span>Wind Speed (km/h)</span><span id="wind"></span></div>
+                </div>
+            </div>
+        </div>
+        <div class="hourly">
+            <span class="titles colored">Hourly</span>
+            <div class="hourly__items">
+                <div class="hourly-item" style="margin-right: 15px; width: 20%;">
+                    <span class="titles" id="currDay"></span>
+                    <div class="pic">
+                        <img id="currIco" src="" alt="">
+                    </div>
+                    <span>Forecast</span>
+                    <span>Temp (&deg;C)</span>
+                    <span>Wind (km/h)</span>
+                </div>
+                <div class="hourly-item">
+                    <span class="titles" id="time1"></span>
+                    <div class="pic">
+                        <img id="pic1" src="" alt="">
+                    </div>
+                    <span id="foreCast1"></span>
+                    <span id="temp1"></span>
+                    <span id="wind1"></span>
+                </div>
+                <div class="hourly-item">
+                    <span class="titles" id="time2"></span>
+                    <div class="pic">
+                        <img id="pic2" src="" alt="">
+                    </div>
+                    <span id="foreCast2"></span>
+                    <span id="temp2"></span>
+                    <span id="wind2"></span>
+                </div>
+                <div class="hourly-item">
+                    <span class="titles" id="time3"></span>
+                    <div class="pic">
+                        <img id="pic3" src="" alt="">
+                    </div>
+                    <span id="foreCast3"></span>
+                    <span id="temp3"></span>
+                    <span id="wind3"></span>
+                </div>
+                <div class="hourly-item">
+                    <span class="titles" id="time4"></span>
+                    <div class="pic">
+                        <img id="pic4" src="" alt="">
+                    </div>
+                    <span id="foreCast4"></span>
+                    <span id="temp4"></span>
+                    <span id="wind4"></span>
+                </div>
+                <div class="hourly-item">
+                    <span class="titles" id="time5"></span>
+                    <div class="pic">
+                        <img id="pic5" src="" alt="">
+                    </div>
+                    <span id="foreCast5"></span>
+                    <span id="temp5"></span>
+                    <span id="wind5"></span>
+                </div>
+                <div class="hourly-item">
+                    <span class="titles" id="time6"></span>
+                    <div class="pic">
+                        <img id="pic6" src="" alt="">
+                    </div>
+                    <span id="foreCast6"></span>
+                    <span id="temp6"></span>
+                    <span id="wind6"></span>
+                </div>
+            </div>
+        </div>
+        <div class="err__info" hidden>
+            <div>404</div>
+            <div>NOT FOUND</div>
+            <div style="font-size: 1.2rem; margin-top: 20px;">Please enter a different city</div>
+        </div>
+    </div>
+
+</body>
+</html>

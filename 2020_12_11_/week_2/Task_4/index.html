@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zyrianov_PE911_task4</title>
+</head>
+<body>
+    <script>
+        let arrayAuditories = new Array(new auditory('b12', 'math', 18),
+            new auditory('c28', 'math', 12),
+            new auditory('a11', 'math', 10), 
+            new auditory('a17', 'math', 20), 
+            new auditory('c31', 'chemistry', 14), 
+            new auditory('b14', 'chemistry', 10), 
+            new auditory('a22', 'chemistry', 19));
+
+        let gr1 = new group('ch44', 'chemistry', 14);
+        let gr2 = new group('mt8', 'math', 16);
+
+        console.log("*** Вывод на экран всех аудиторий: ***");
+        printAllAuditories();
+        console.log("*** Вывод на экран аудиторий 'math' факультета: ***");
+        printFacultyAuditories('math');
+        console.log("*** Вывод на экран аудиторий для группы: ***");
+        console.log("* Группа: *");
+        console.log(gr1);
+        console.log("* Аудитории: *");
+        checkAuditoryForGroup(gr1);
+        console.log("* Группа: *");
+        console.log(gr2);
+        console.log("* Аудитории: *");
+        checkAuditoryForGroup(gr2);
+        console.log("*** Сортировать аудитории по кол-ву мест: ***");
+        arrayAuditories.sort(compareSeats);
+        printAllAuditories();
+        console.log("*** Сортировать аудитории по имени: ***");
+        arrayAuditories.sort(compareAuditoryName);
+        printAllAuditories();
+
+        // 1
+        function printAllAuditories()
+        {
+            for (const it of arrayAuditories)
+            {
+                console.log(it);
+            }
+        }
+        // 2
+        function printFacultyAuditories(facult)
+        {
+            for (const item of arrayAuditories)
+            {
+                if ('faculty' in item & item.faculty === facult)
+                {
+                    console.log(item);
+                }
+            }
+        }
+        // 3
+        function checkAuditoryForGroup(group)
+        {
+            if('faculty' in group && 'quantity' in group)
+            {
+                for (const item of arrayAuditories)
+                {
+                    if('faculty' in item && 'seats' in item)
+                    {
+                        if(item.faculty === group.faculty && item.seats >= group.quantity)
+                        {
+                            console.log(item);
+                        }
+                    }
+                }
+            }
+            else
+            {
+                console.log("Неправильный формат переданной группы");
+            }
+        }
+        // 4
+        function compareSeats(audit1, audit2)
+        {
+            return audit1.seats - audit2.seats;
+        }
+        // 5
+        function compareAuditoryName(audit1, audit2)
+        {
+            if (audit1.name > audit2.name) return 1;
+            if (audit1.name < audit2.name) return -1;
+            return 0;
+        }
+
+
+        // objects
+        function auditory(name, faculty, seats)
+        {
+            return {
+                name: name,
+                faculty: faculty,
+                seats: seats
+            }
+        }
+        function group(name, faculty, quantity)
+        {
+            return {
+                name: name,
+                faculty: faculty,
+                quantity: quantity
+            }
+        }
+    </script>
+</body>
+</html>

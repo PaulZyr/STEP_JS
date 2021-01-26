@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style5.css">
+    <title>Zyrianov_2020_12_22_task4_books</title>
+</head>
+<body>
+    <div class="container">
+        <div class="books__block">
+            <div class="books__input">
+                <span><b>Input new book: </b></span>
+                <form class="newBook" action="">
+                    <span>Author: <input type="text" id="bookAuthorInput"></span>
+                    <span>Title: <input type="text" id="bookTitleInput"></span>
+                    <span><button type="reset" id="addBook">add Book</button></span>
+                </form>
+            </div>
+            <div class="books__list">
+                <h3>Books:</h3>
+                <div class="books__area" id="booksArea">
+                    <div class="book__item"><span>--- empty ---</span></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function Book(author, title) {
+            return {
+                author: author,
+                title: title
+            }
+        }
+        let books = [];
+
+        booksArea.addEventListener('click', (e)=>{
+            if (e.target.className === 'book__item')
+            {
+                let tmp = document.getElementsByClassName('book__item');
+
+                for (let it of tmp)
+                {
+                    if (it.id === e.target.id)
+                    {
+                        it.style.backgroundColor = '#FFA984';
+                    }
+                    else{
+                        it.style.background = 'none';
+                    }
+                }
+            }
+        })
+
+        addBook.addEventListener('click', ()=>{
+            books.push(new Book(bookAuthorInput.value, bookTitleInput.value));
+            printBookList();
+        })
+        function printBookList()
+        {
+            let str = '<ol>';
+            for (let i = 0; i < books.length; ++i)
+            {
+                str += `<li class="book__item" id="item${i}">"${books[i].title}" by ${books[i].author}</li>`;
+            }
+            str += '</ol>';
+            booksArea.innerHTML = str;
+        }
+        books.push(new Book('Michael Eric Dyson', "Long Time Coming: Reckoning with Race in America"));
+        books.push(new Book('Arianna Davis', "What Would Frida Do?: A Guide to Living Boldly"));
+        books.push(new Book('Jonathan Lethem', "The Arrest"));
+        books.push(new Book('Bryan Washington', "Memorial"));
+
+        books.push(new Book('Pupkin Vasya', "Torba in one's mind always means Torba in one's life"));
+        books.push(new Book('MacArthur John', "Someone somewhere is singing too loudly"));
+        
+        printBookList();
+
+    </script>
+    
+</body>
+</html>

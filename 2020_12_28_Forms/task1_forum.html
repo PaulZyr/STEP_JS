@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0px;
+        }
+        .description {
+            width: 800px;
+            margin: auto;
+        }
+        .result {
+            width: 800px;
+            margin: auto;
+            background-color: beige;
+        }
+        .forum-input, .forum {
+            padding: 20px;
+        }
+        .block {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0px;
+        }
+        .left {
+            text-align: right;
+            width: 18%;
+        }
+        .left p {
+            margin-top: 10px;
+        }
+        input, textarea {
+            margin-top: 10px;
+            width: 600px;
+        }
+        input {
+            height: 20px;
+        }
+
+        .item-title {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border: 2px solid gray;
+        }
+        .item-title span {
+            padding: 5px 15px;
+        }
+        .item-text {
+            border: 2px solid gray;
+            border-top: none;
+        }
+        .item-text p {
+            padding: 15px;
+        }
+        .forum__item {
+            background-color: antiquewhite;
+            margin-bottom: 15px;
+        }
+        button {
+            width: 100%;
+            height: 30px;
+            font-size: 16px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="description">
+        <h2>Задание 1</h2>
+        <p>Создать html-страницу со списком сообщений на форуме и
+            формой для добавления нового сообщения. <br> После заполнения
+            формы добавить сообщение к списку на экране.</p>
+    </div>
+    <div class="result">
+        <div class="forum" id="forum"></div>
+
+        <div class="forum-input" style="text-align: center;">
+            <h3>Add new message</h3>
+            <form action="">
+                <div class="block">
+                    <div class="left">
+                        <p>Your name:</p>
+                        <p>Your message:</p>
+                    </div>
+                    <div>
+                        <div>
+                            <label> 
+                                <input id="inputName" type="text" placeholder="Petro Bondar">
+                            </label>
+                        </div>
+                        <div>
+                            <label>                       
+                                <textarea id="inputText" cols="30" rows="10"></textarea>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <button id="buttonSend">Send</button>
+                </div>
+                
+            </form>
+            
+
+        </div>
+    </div>
+    
+    <script>
+        let items = [];
+        let date = new Date(2018,5,2,14,25,16);
+        let str = 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium, quaerat asperiores. Officiis placeat nesciunt voluptatem optio voluptatum earum tenetur laboriosam, voluptates cumque natus est rerum aspernatur quaerat, recusandae assumenda non.';
+        let name = 'John Smith';
+        items.push(new ForumItem(name, date, str));
+        name = 'Jack Sparrow';
+        date = new Date(2019,9,18,2,10,30);
+        items.push(new ForumItem(name, date, str));
+        name = 'Mykola Zalizo';
+        date = new Date(2020,4,3,20,50,58);
+        items.push(new ForumItem(name, date, str));
+        printAllItems();
+
+        document.addEventListener('click', e=>{
+            e.preventDefault();
+            console.log("test = ", e.target.id, e.target.className);
+            if (e.target.id === 'buttonSend')
+            {
+                let forumItem = new ForumItem(inputName.value, new Date(), inputText.value);
+                items.push(forumItem);
+                addToForum(forumItem);
+                inputName.value = inputText.value = '';
+                location.href = "#buttonSend";
+            }
+        })
+
+        function addToForum(item)
+        {
+            let div = document.createElement('div');
+            div.className = 'forum__item';
+            div.innerHTML = `<div class='item-title'><span>${item.name}</span>
+                <span>${item.date.toLocaleString()}</span></div><div class='item-text'>
+                    <p id='itemTxt'>${item.message}</p></div>`;
+            forum.append(div);
+        }
+
+        function printAllItems()
+        {
+            for (let item of items)
+            {
+                addToForum(item);
+            }
+        }
+
+        function ForumItem(name, date, message)
+        {
+            return {
+                'name': name,
+                'date': date,
+                'message': message
+            }
+        }
+    </script>
+</body>
+</html>

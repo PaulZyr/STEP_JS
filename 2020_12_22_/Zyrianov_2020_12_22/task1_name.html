@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style1.css">
+    <title>Zyrianov_2020_12_22_task1_name</title>
+</head>
+<body>
+    <div class="task1">
+        <div class="task1__item">
+            <span style="padding: 10px 0px;">Input your name (name can't contain digits):</span>
+        </div>
+        <div class="task1__item">
+            <form action="" >
+                <input id="inputText" class="inputText" type="text">
+            </form>
+        </div>
+        
+        
+    </div>
+    
+
+    <script>
+        inputText.addEventListener('input', ()=>{
+
+            let str = '';
+            for (let c of inputText.value)
+            {
+                if(!c.match(/[0-9]/g))
+                {
+                    str += c;
+                }
+            }
+            inputText.value = str;
+        })
+    </script>
+    
+</body>
+</html>

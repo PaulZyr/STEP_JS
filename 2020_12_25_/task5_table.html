@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0px;
+        }
+        .description {
+            width: 600px;
+            margin: auto;
+        }
+        .result {
+            padding: 20px;
+            width: 600px;
+            margin: auto;
+            background-color: antiquewhite;
+        }
+        table {
+            width: 100%;
+        }
+        table, td, th {
+            border: 1px solid gray;
+            border-collapse: collapse;
+        }
+        th, td {
+            height: 40px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="description">
+        <h2>Задание 5</h2>
+        <p>Создать html-страницу с большой таблицей. <br>
+            При клике по заголовку колонки, необходимо отсортировать
+            данные по этой колонке. Например: на скриншоте люди отсо-
+            ртированы по возрасту. Учтите, что числовые значения должны
+            сортироваться как числа, а не как строки.</p>
+    </div>
+    <div class="result" id="result"></div>
+
+    <script>
+        let persons = [];
+        persons.push(new Person('Mark', 'Zuckerberg', 34, 'Facebook'));
+        persons.push(new Person('Larry', 'Page', 45, 'Google'));
+        persons.push(new Person('Timothy', 'Cook', 57, 'Apple'));
+        persons.push(new Person('Bill', 'Gates', 62, 'Microsoft'));
+        persons.push(new Person('John', 'Doe', 5, 'somewhere'));
+        persons.push(new Person('Jack', 'Colt', 124, 'somewhere2'));
+
+        personsAsTable();
+
+        document.addEventListener('click', e=>{
+            if(e.target.id === 'thFirst')
+            {
+                persons.sort((a, b) => a.firstname > b.firstname ? 1 : -1);
+                personsAsTable();
+            }
+            else if (e.target.id === 'thLast')
+            {
+                persons.sort((a, b) => a.lastname > b.lastname ? 1 : -1);
+                personsAsTable();
+            }
+            else if (e.target.id === 'thAge')
+            {
+                persons.sort((a, b) => a.age > b.age ? 1 : -1);
+                personsAsTable();
+            }
+            else if (e.target.id === 'thCompany')
+            {
+                persons.sort((a, b) => a.company > b.company ? 1 : -1);
+                personsAsTable();
+            }
+        })
+
+        function personsAsTable()
+        {
+            result.innerHTML = `<table id='myTable'></table>`;
+            let tr = document.createElement('tr');
+            tr.innerHTML = `<th id='thFirst'>Firstname</th><th id='thLast'>Lastname</th>
+                <th id='thAge'>Age</th><th id='thCompany'>Company</th>`;
+            myTable.append(tr);
+            for (let i = 0; i < persons.length; ++i)
+            {
+                let tr = document.createElement('tr');
+                tr.id = `tr${i}`;
+                tr.innerHTML = `<td>${persons[i].firstname}</td><td>${persons[i].lastname}</td>
+                    <td>${persons[i].age}</td><td>${persons[i].company}</td>`;
+                myTable.append(tr);
+            }
+        }
+        function Person(first, last, age, company) {
+            return {
+                'firstname': first,
+                'lastname': last,
+                'age': age,
+                'company': company
+            }
+        }
+    </script>
+</body>
+</html>

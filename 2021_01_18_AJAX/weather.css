@@ -1,0 +1,109 @@
+body {
+    background-color: azure;
+    padding: 10px 30px;
+    font-size: 18px;
+}
+* {
+    box-sizing: border-box;
+    margin: 0px;
+    padding: 0px;
+}
+.container {
+    width: 700px;
+    margin: auto;
+    background-color:beige;
+    padding: 20px;
+}
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.searchButton, .inputSearch {
+    border: none;
+    font-size: 1.2rem;
+    background: none;
+}
+.inputSearch {
+    border-bottom: 1px solid gray;
+    width: 200px;
+    margin-right: 10px;
+    padding: 1px 2px;
+}
+.formSearch {
+    display: flex;
+    align-items: center;
+}
+img {
+    max-width: 100%;
+    max-height: 100%;
+}
+.main, .hourly {
+    background-color: aliceblue;
+    padding: 20px;
+    margin: 20px 0px 0px;
+}
+.main__title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.main__items {
+    display: flex;
+    justify-content: space-between;
+}
+.main-item {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    
+}
+.main-item .mi2 {
+    align-items: center;
+}
+.mi3 {
+    width: 30%;
+}
+.mi3 div{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.hourly__items {
+    display: flex;
+    justify-content: space-between;
+}
+.hourly-item {
+    width: 15%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0px 5px;
+}
+.hourly-item .pic {
+    height: 30%;
+}
+span {
+    padding: 3px 0px;
+}
+.titles {
+    font-size: 1.1rem;
+    font-weight: bold;
+}
+.colored {
+    color: blueviolet;
+}
+.currTemperature {
+    font-size: 3rem;
+}
+.err__info {
+    font-size: 1.5rem;
+    text-align: center;
+    padding: 50px;
+    margin: 20px auto 0px;
+    background-color: aliceblue;
+}
+#currTime {
+    padding-left: 10px;
+}

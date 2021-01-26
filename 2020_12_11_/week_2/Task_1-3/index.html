@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <script src="index.js"></script>
+    <title>Zyrianov_PE911_task1-3</title>
+</head>
+<body>
+
+    <div class="container">
+        <div class="description">
+            <h2>1. Список покупок</h2>
+            <p>Создать массив «Список покупок». 
+            <br>Каждый элемент массива
+                является объектом, который содержит название продукта, необ-
+                ходимое количество и куплен или нет.</p>
+        </div>
+        <div class="task">
+            <div class="task__item1">
+                <h4>Добавить в список:</h4>
+                <form class="task__item-input" action="">
+                    <p>Наим.: <input type="text" minlength="2" maxlength="20" id="buyName"></p>
+                    <p>Количество: <input type="number" min="0" max="10000" id="buyQuantity"></p>
+                    <button type="reset" onclick="addBuyItem()">Добавить</button>
+                </form>
+            </div>
+            <div class="task__item2">
+                <h4>Невыполнено:</h4>
+                <div class="list__undone" id="list__undone">
+                    <div class="list__item">
+                        <div class="idiv list__item-num"><span id="list__item--num">№</span></div>
+                        <div class="idiv list__item-name"><span id="list__item--name">Наименование:</span></div>
+                        <div class="idiv list__item-quantity"><span id="list__item--quantity">Кол.</span></div>
+                    </div>
+                    <div id="print-undone"></div>
+                </div>
+                <h4>Выполнено:</h4>
+                <div class="list__done" id="list__done">
+                    <div class="list__item">
+                        <div class="idiv list__item-num"><span id="list__item--num">№</span></div>
+                        <div class="idiv list__item-name"><span id="list__item--name">Наименование:</span></div>
+                        <div class="idiv list__item-quantity"><span id="list__item--quantity">Кол.</span></div>
+                    </div>
+                    <div id="print-done"></div>
+                </div>
+                <hr>
+                <div>
+                    <button type="button" onclick="newList()">Новый список</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="description">
+            <h2>2. Чек в магазине</h2>
+            <p>Создать массив, описывающий чек в магазине. 
+                <br> Каждый элемент массива состоит из названия товара, количества и цены за
+                единицу товара</p>
+        </div>
+        <div class="task">
+            <div class="task2__item1">
+                <h4>Создать чек:</h4>
+                <form class="task2__item-input" action="">
+                    <p>Наим.: <input type="text" minlength="2" maxlength="20" id="task2-billName"></p>
+                    <p>Количество: <input type="number" min="0" max="10000" id="task2-billQuantity"></p>
+                    <p>Цена за ед.: <input type="number" min="0" max="10000" id="task2-billPrice"></p>
+                    <button type="reset" onclick="addBillItem()">Добавить</button>
+                </form>
+            </div>
+
+            <div class="task2__item2">
+                <h4>Чек:</h4>
+                <div class="task2__items">
+                    <div class="task2__item t2-n"><span>Наименование:</span></div>
+                    <div class="task2__item t2-p"><span>Цена за ед.:</span></div>
+                    <div class="task2__item t2-q"><span>Кол-во:</span></div>
+                    <div class="task2__item t2-s"><span id="sum">Сумма:</span></div>
+                </div>
+                <div id="print-task2"></div>
+
+                <hr>
+                <div class="task2__sum">
+                    <div class="task2__sum-item"><span>Сумма чека: </span></div>
+                    <div class="task2__sum-item"><span id="tsk2_sum-all">---</span></div>
+                </div>
+                <hr>
+                <div>
+                    <button type="button" onclick="newBill()">Новый чек</button>
+                </div>
+            </div>
+        </div>
+        </div>
+        
+        <div class="container">
+            <div class="description">
+                <h2>3. CSS стили</h2>
+                <p></p>
+            </div>
+            <div class="task3">
+                <div class="task3__item1">
+                    <h4>Введите текст:</h4>
+                    <div class="task3-text">
+                        <textarea name="" id="task3-area" cols="60" rows="10"></textarea>
+                    </div>
+                </div>
+                <div class="task3__item2">
+                    <h4>Введите стили:</h4>
+                    <div class="task3-style">
+                        <p>color: <input type="text" id="colorZ"></input> 
+                            <button type="button" id="color" onclick="addStyleItem(this.id)">Добавить</button>
+                        </p>
+                        <p>font-size: <input type="text" id="font-sizeZ">
+                            <button type="button" id="font-size" onclick="addStyleItem(this.id)">Добавить</button>
+                        </p>
+                        <p>text-align: <input type="text" id="text-alignZ">
+                            <button type="button" id="text-align" onclick="addStyleItem(this.id)">Добавить</button>
+                        </p>
+                        <p>text-decoration: <input type="text" id="text-decorationZ">
+                            <button type="button" id="text-decoration" onclick="addStyleItem(this.id)">Добавить</button>
+                        </p>
+                        <p>background-color: <input type="text" id="background-colorZ">
+                            <button type="button" id="background-color" onclick="addStyleItem(this.id)">Добавить</button>
+                        </p>
+                    </div>
+                    <div class="tmp-styles" id="tmp-styles">style = </div>
+                    <div class="task3__out">
+                        <button type="button" onclick="applyStyles()">Вывести</button>
+                    </div>
+                </div>
+                <div class="task3__item1">
+                    <h4>Результат:</h4>
+                    <div class="task3__result">
+                        <div id="task3-res">
+                            <span>Ваш текст</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+
+            
+        </div>
+        
+
+
+    </div>
+
+
+
+</body>
+</html>

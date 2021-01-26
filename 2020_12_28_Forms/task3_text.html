@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0px;
+            padding: 0px;
+        }
+        .description {
+            width: 600px;
+            margin: auto;
+        }
+        hr {
+            margin: 20px 0px;
+        }
+        .result {
+            padding: 10px;
+            position: relative;
+            width: 600px;
+            margin: auto;
+            background-color: antiquewhite;
+        }
+        .formInputs {
+            display: flex;
+            justify-content: space-evenly;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        .txtArea {
+            width: 600px;
+        }
+        textarea {
+            width: 578px;
+            height: 150px;
+            padding: 10px;
+            font-size: 20px;
+        }
+        .inp {
+            margin: 0px 5px;
+        }
+        .inp span {
+            padding-left: 5px;
+        }
+        #divArea h3 {
+            margin: 5px;
+        }
+        .resultText {
+            border: 1px solid gray;
+            padding: 10px;
+            font-size: 24px;
+        }
+        button {
+            width: 100%;
+            height: 25px;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+    <div class="description">
+        <h2>Задание 3</h2>
+        <p>Создать html-страницу с формой для ввода стилизованного
+            текста. <br> После заполнения формы, вывести текст на экран в соот-
+            ветствии с указанными стилями.</p>
+    </div>
+    <div class="result">
+        <div id="txtArea">
+            <form class="formInputs" action="">
+                <div class="inp"><input id="bold" type="checkbox"><span>Bold</span></div>
+                <div class="inp"><input id="underline" type="checkbox"><span>Underline</span></div>
+                <div class="inp"><input id="italic" type="checkbox"><span>Italics</span></div>
+                <div class="inp"><input id="left" type="radio" name="radioTxt"><span>Left</span></div>
+                <div class="inp"><input id="right" type="radio" name="radioTxt"><span>Right</span></div>
+                <div class="inp"><input id="justify" type="radio" name="radioTxt"><span>Justify</span></div>
+            </form>
+            <textarea name="" id="mytxt"></textarea>
+            <div class=""><button id="buttonInp">Show text</button></div>
+        </div>
+        <div id="divArea">
+            <h3>Result:</h3>
+            <div class="resultText" id="resultText"></div>
+        </div>
+    </div>
+
+    <script>
+        let str = "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eveniet suscipit quae inventore ullam atque ratione tenetur excepturi, voluptates fugit necessitatibus laudantium voluptate minus nesciunt a veritatis, repellat aliquid pariatur assumenda?";
+        divArea.hidden = true;
+        txtArea.hidden = false;
+        mytxt.innerText = str;
+        document.addEventListener('click', (e)=>{
+            if (e.target.id === 'buttonInp') {
+                divArea.hidden = false;
+                txtArea.hidden = true;
+                e.preventDefault();
+
+                resultText.innerHTML = mytxt.value;
+                mytxt.innerHTML = mytxt.value;
+
+                let items = document.querySelectorAll('input:checked');
+                for(let item of items)
+                {
+                    if(item.type === 'checkbox')
+                    {
+                        if(item.id === 'bold')
+                        {
+                            resultText.style.fontWeight = 'bold';
+                        }
+                        if(item.id === 'italic')
+                        {
+                            resultText.style.fontStyle = 'italic';
+                        }
+                        if(item.id === 'underline')
+                        {
+                            resultText.style.textDecoration = 'underline';
+                        }
+                    }
+                    else if (item.type === 'radio')
+                    {
+                        resultText.style.textAlign = item.id;
+                    }
+                }
+            }
+            else if (e.target.id === 'resultText')
+            {
+                divArea.hidden = true;
+                txtArea.hidden = false;
+            }
+        })
+    </script>
+</body>
+</html>

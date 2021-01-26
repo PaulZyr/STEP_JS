@@ -1,0 +1,46 @@
+.container {
+    width: 100vw;
+    height: 100vh;
+    background-color: darkseagreen;
+    position: relative;
+}
+
+.block {
+    margin: auto;
+    width: 600px;
+    height: 400px;
+    background-color: beige;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.generator {
+    font-size: 150px;
+    color: red;
+}
+
+.gen-b {
+    width: 200px;
+    height: 80px;
+    font-size: 28px;
+    color: blueviolet;
+}
+
+.info {
+    position: absolute;
+    font-size: 24px;
+    display: flex;
+}
+
+.info1 {
+    padding-right: 30px;
+}
+
+.task3 {
+    width: 500px;
+    margin: 50px auto;
+    background-color: ghostwhite;
+    font-size: 24px;
+}

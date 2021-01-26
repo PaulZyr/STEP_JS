@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            position: relative;
+            }
+        .item, .dragged {
+            height: 30px;
+            width:  300px;
+        }
+        .dragged{
+            position: absolute;
+        }
+        .info {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    
+    <ol id='list'>
+        <li class='item' style='background-color:gold' ></li>
+        <li class='item' style='background-color:red'  ></li>
+        <li class='item' style='background-color:green'></li>
+        <li class='item' style='background-color:blue' ></li>
+    </ol>
+    <!-- <div id="info">
+        info
+    </div> -->
+    <script>
+        let originalElement = false;
+        let draggedElement = false;
+        let lowerElement = false;
+
+        document.addEventListener('mousedown', (e)=>{
+            let tmp = document.elementFromPoint(e.clientX,e.clientY);
+            if (tmp.className.indexOf('item') > -1)
+            {
+                originalElement = tmp;
+                draggedElement = tmp.cloneNode(true);
+                draggedElement.className = 'dragged';
+            }
+        })
+        document.addEventListener('mousemove', (e)=>{
+            if(draggedElement)
+            {
+                originalElement.style.opacity = '0.5';
+                document.body.append(draggedElement);
+                draggedElement.style.left = e.clientX - draggedElement.offsetWidth/2 + 'px';
+                draggedElement.style.top = e.clientY - draggedElement.offsetHeight + 'px';
+            }
+        })
+        document.addEventListener('mouseup', (e)=>{
+            draggedElement.style.zIndex='-1';
+            lowerElement = document.elementFromPoint(e.clientX,e.clientY);
+            draggedElement.style.zIndex='1';
+
+            if(lowerElement.className === 'item')
+            {
+                let middle = lowerElement.getBoundingClientRect().top + lowerElement.offsetHeight / 2;
+                if(e.clientY <= middle) 
+                {
+                    lowerElement.before(originalElement);
+                }
+                else
+                {
+                    lowerElement.after(originalElement);
+                }
+                //info.innerHTML = "middle = " + middle;
+                originalElement.style.opacity = '1';
+            }
+            document.body.removeChild(draggedElement);
+            draggedElement = false;
+        })
+    </script>
+</body>
+</html>

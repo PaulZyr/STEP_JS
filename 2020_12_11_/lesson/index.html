@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    
+    <title>Document</title>
+</head>
+<body>
+
+    <script>
+
+        let arr = [];
+
+        for (let i =0; i < 10; ++i)
+        {
+            arr.push(Math.floor(Math.random() * 12));
+        }
+
+        console.log("Task 1_1");
+        printus(arr);
+        console.log("Task 1_2");
+        printusEven(arr);
+        console.log("Task 1_3");
+        printusSum(arr);
+        console.log("Task 1_4");
+        printusMax(arr);
+        let elem = 444;
+        let index = 5;
+        console.log("Task 1_5");
+        console.log("Old array: ", arr);
+        addToArray(arr, elem, index);
+        console.log("Task 1_6");
+        deleteFromArray(arr, index);
+
+        let arr2 = [];
+        for (let i =0; i < 5; ++i)
+        {
+            arr2.push(Math.floor(Math.random() * 12));
+        }
+
+        console.log("Task 2_1");
+        console.log("Original arr: ", arr);
+        console.log("Original arr2: ", arr2);
+        joinArray(arr, arr2);
+        console.log("Task 2_2");
+        console.log("Original arr: ", arr);
+        console.log("Original arr2: ", arr2);
+        uniqNumbers(arr, arr2)
+        console.log("Task 2_3");
+        console.log("Original arr: ", arr);
+        console.log("Original arr2: ", arr2);
+        uniqNumbers2(arr, arr2)
+
+
+
+
+        
+        function printus(array)
+        {
+            console.log("Array:");
+            for(let i=0; i < array.length; ++i)
+            {
+                console.log(array[i]);
+            }
+        }
+
+        function printusEven(array)
+        {
+            console.log("Even numbers:");
+            for(let i=0; i < array.length; ++i)
+            {
+                if (parseInt(array[i] % 2) === 0)
+                {
+                    console.log(array[i]);
+                }
+            }
+        }
+
+        function printusSum(array)
+        {
+            let sum = 0;
+            
+            for(let i=0; i < array.length; ++i)
+            {
+                sum += array[i];
+            }
+            console.log("Sum: ", sum);
+        }
+
+        function printusMax(array)
+        {
+            let maximus = 0;
+            
+            for(let i=0; i < array.length; ++i)
+            {
+                if(array[i] > maximus) maximus = array[i];
+            }
+            console.log("Max number: ", maximus);
+        }
+
+        function addToArray(array, elem, index)
+        {
+            array.splice(index-1, 0, elem);
+            console.log("New array: ", array);
+        }
+
+        function deleteFromArray(array, index)
+        {
+            array.splice(index-1, 1);
+            console.log("New array: ", array);
+        }
+
+
+        function joinArray(array1, array2)
+        {
+            for (var item of array2)
+            {
+                if(array1.indexOf(item) === -1)
+                {
+                    array1.push(item);
+                }
+            }
+            console.log("New arr: ", array1);
+        }
+
+        function uniqNumbers(array1, array2)
+        {
+            let arr3 = [];
+            for (var item of array1)
+            {
+                if(array2.indexOf(item) !== -1)
+                {
+                    if (arr3.indexOf(item) === -1)
+                    {
+                        arr3.push(item);
+                    }
+                }
+            }
+            if (arr3.length > 0) console.log("New arr: ", arr3);
+            else console.log("No numbers...")
+        }
+
+        function uniqNumbers2(array1, array2)
+        {
+            let arr3 = [];
+            for (var item of array1)
+            {
+                if(array2.indexOf(item) === -1)
+                {
+                    arr3.push(item);
+                }
+            }
+            if (arr3.length > 0) console.log("New arr: ", arr3);
+            else console.log("No numbers...")
+        }
+
+       
+
+
+
+
+        /*
+        function Quadro (leftX, leftY, rightX, rightY) {
+            return {
+                leftX,
+                leftY,
+                rightX,
+                rightY
+            }
+        }
+
+        let quadro = new Quadro(2, 3, 7, 8);
+
+        QuadroInfo(quadro);
+        QuadroWidth(quadro);
+        QuadroHeight(quadro);
+        QuadroSquare(quadro);
+        QuadroPerimeter(quadro);
+
+
+
+        function QuadroInfo(Quadro)
+        {
+            console.log("Quadro:");
+            console.log("Left Point:", "x = ",  quadro.leftX, ", y = ",  quadro.leftY);
+            console.log("Right Point:", "x = ", quadro.rightX, ", y = ", quadro.rightY);
+        }
+
+        function QuadroWidth(Quadro)
+        {
+            console.log("Quadro:");
+            console.log("Width = ", quadro.rightX - quadro.leftX);
+        }
+
+        function QuadroHeight(Quadro)
+        {
+            console.log("Quadro:");
+            console.log("Height = ", quadro.rightY - quadro.leftY);
+        }
+
+        function QuadroSquare(Quadro)
+        {
+            console.log("Quadro:");
+            console.log("Square = ", (quadro.rightY - quadro.leftY) * (quadro.rightX - quadro.leftX));
+        }
+
+        function QuadroPerimeter(Quadro)
+        {
+            console.log("Quadro:");
+            console.log("Perimeter = ", (quadro.rightY - quadro.leftY) * 2 + (quadro.rightX - quadro.leftX) * 2);
+        }
+        */
+
+    </script>
+    
+</body>
+</html>

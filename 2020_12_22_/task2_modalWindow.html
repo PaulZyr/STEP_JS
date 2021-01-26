@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style2.css">
+    <title>Zyrianov_2020_12_22_task2_modalWindow</title>
+</head>
+<body>
+    <div class="task2">
+        <button id="openModal" class="openModal" type="button">Open Modal</button>
+        <div class="task2__shadow" id="shadow">
+        </div>
+        <div id="modalWindow">
+            <div class="modal__inner">
+                <h3>Hello from Modal Window!</h3>
+                <button class="close_modal" type="button" id="closeModal">Close</button>
+            </div>
+        </div>
+        
+    </div>
+
+    <script>
+        openModal.addEventListener('click', ()=>{
+            modalWindow.style.display = 'block';
+            shadow.style.display = 'block';
+        })
+        closeModal.addEventListener('click', ()=>{
+            modalWindow.style.display = 'none';
+            shadow.style.display = 'none';
+        })
+    </script>
+</body>
+</html>

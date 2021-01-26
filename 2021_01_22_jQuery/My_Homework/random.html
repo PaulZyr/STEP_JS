@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="jquery-3.5.1.min.js"></script>
+    <script src="random.js"></script>
+    <style>
+        body {
+            background-color: aliceblue;
+            padding: 0px 10px 30px;
+        }
+        * {
+            box-sizing: border-box;
+            margin: 0px;
+        }
+        .generator {
+            width: 500px;
+            margin: auto;
+            background-color: antiquewhite;
+            display: flex;
+            flex-direction: column;
+            padding: 20px;
+        }
+        .row {
+            margin: 7px 0px;
+        }
+        .checks {
+            padding-left: 10px;
+        }
+        input, textarea {
+            margin: 0px 5px;
+        }
+        #input {
+            width: 50px;
+        }
+        .res {
+            display: flex;
+            align-items: center;
+        }
+    </style>
+    <title>Document</title>
+</head>
+<body>
+    <div class="generator">
+        <div class="row">
+            <h4>Random String Generator</h4>
+        </div>
+        <div class="row">
+            <span>String should be </span>
+            <input type="number" id="long" value="8">
+            <span> character long</span>
+        </div>
+        <div class="row">
+            <span>Which characters are allowed to occur in the string?</span>
+            <div class="checks">
+                <div><input type="checkbox" id="nums"><span>Numeric difits (0-9)</span></div>
+                <div><input type="checkbox" id="uppers"><span>Uppercase letters (A-Z)</span></div>
+                <div><input type="checkbox" id="lowers"><span>Lowercase letters (a-z)</span></div>
+            </div>
+        </div>
+        <div class="row">
+            <button type="button">Generate</button>
+        </div>
+        <div class="row"><hr></div>
+        
+        <div class="row res">
+            <h4>Result: </h4>
+            <textarea name="" id="result" cols="30" rows="1"></textarea>
+        </div>
+    </div>
+</body>
+</html>

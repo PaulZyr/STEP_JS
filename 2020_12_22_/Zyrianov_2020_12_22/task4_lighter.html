@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style4.css">
+    <title>Zyrianov_2020_12_22_task4_lighter</title>
+</head>
+<body>
+    <div class="container">
+        <div class="lighter">
+            <div class="light__block">
+                <div class="light" id="item1"></div>
+                <div class="light" id="item2"></div>
+                <div class="light" id="item3"></div>
+            </div>
+            <div class="light__block2">
+                <button class="lighter__button" id="ligterButton">Next</button>
+            </div>
+        </div>
+    </div>
+    <script>
+        let lighterArr = ['item1', 'item2', 'item3'];
+        let colorArr = ['red', 'yellow', 'green'];
+        let num = 0;
+
+        ligterButton.addEventListener('click', ()=>{
+            for (let i = 0; i < 3; ++i)
+            {
+                document.getElementById(lighterArr[i]).style.backgroundColor = 'gray';
+            }
+            document.getElementById(lighterArr[num%3]).style.backgroundColor = colorArr[num%3];
+            num++;
+        })
+
+    </script>
+    
+</body>
+</html>

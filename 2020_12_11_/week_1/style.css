@@ -1,0 +1,67 @@
+.body {
+    margin: 0px;
+}
+* {
+    box-sizing: border-box;
+}
+p, h5 {
+    margin: 5px 0px;
+}
+hr {
+    width: 100%;
+    border: 1px solid gray;
+}
+button {
+    margin: 10px 0px;
+}
+
+h2 {
+    text-align: center;
+}
+.container {
+    max-width: 850px;
+    padding: 20px;
+    margin: auto;
+}
+.discription {
+    margin-bottom: 20px;
+    padding: 20px;
+    background-color: antiquewhite;
+}
+.task {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    background-color: azure;
+    margin-bottom: 20px;
+}
+.task__item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 50%;
+    margin: 20px;
+}
+.task__item--input {
+    display: flex;
+    flex-direction: column;
+    align-items:flex-end;
+}
+.task__item--result {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.task__item--result span {
+    width: 100px;
+    text-align: center;
+    background-color: wheat;
+    color: blueviolet;
+    font-size: 24px;
+    font-weight: bold;
+}
+.serrors3 {
+    font-size: 20px;
+    color: orangered;
+}

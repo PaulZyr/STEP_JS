@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function my1()
+        {
+            let counter = 0;
+            return counter++;
+        }
+        function my2()
+        {
+            let counter = 0;
+            return function()
+            {
+                return counter++;
+            }
+        }
+
+        function sum(a)
+        {
+            return function(b)
+            {
+                return a+b;
+            }
+        }
+
+        function makeArmy() {
+            let shooters = [];
+        
+            let i = 0;
+            while (i < 10) {
+                let shooter = function() { // shooter function
+                    alert( i ); // should show its number
+                };
+                shooters.push(i);
+                i++;
+            }
+        
+            return shooters;
+        }
+        let army = makeArmy();
+        console.log('army[5]', army[5]);
+
+
+        ///////
+
+        // console.log(my1());
+        // console.log(my1());
+        // console.log(my1());
+
+        // console.log(my2());
+        // console.log(my2());
+        // console.log(my2());
+
+        // let m1 = new my1;
+        // let m2 = new my2;
+
+        // console.log('m2', m2());
+        // console.log('m2', m2());
+        // console.log('m2', m2());
+
+        ///
+        // console.log(sum(1)(2));
+        // console.log(sum(5)(-1));
+        
+
+    </script>
+</body>
+</html>

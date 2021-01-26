@@ -1,0 +1,24 @@
+* {
+    margin: 0px;
+}
+
+.task1 {
+    width:500px; 
+    height: 100px; 
+    margin:auto; 
+    text-align: center; 
+    font-size: 22px; 
+    background-color: bisque;
+}
+.task1__item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.task1__item span {
+    font-size: 24px;
+}
+.inputText {
+    width: 400px;
+    font-size: 24px;
+}

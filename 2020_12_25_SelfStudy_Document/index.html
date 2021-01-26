@@ -1,0 +1,25 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Document</title></head><body><ul><li>first element</li><li> second element<span>child Node 0</span><a>child node 1</a><p> child node 2 </p></li><li>third element</li></ul>
+    <div id="elem">Мигалка</div>
+    <script>
+        //setInterval(()=>elem.hidden = !elem.hidden, 1000);
+    </script>
+
+    <!-- пометить div, чтобы показать здесь поле "name" -->
+<div show-info="name"></div>
+<!-- а здесь возраст "age" -->
+<div show-info="age"></div>
+
+<script>
+  // код находит элемент с пометкой и показывает запрошенную информацию
+  let user = {
+    name: "Pete",
+    age: 25
+  };
+
+  for(let div of document.querySelectorAll('[show-info]')) {
+    // вставить соответствующую информацию в поле
+    let field = div.getAttribute('show-info');
+    div.innerHTML = user[field]; // сначала Pete в name, потом 25 в age
+  }
+</script>
+</body></html>
